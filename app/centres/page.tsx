@@ -1,17 +1,90 @@
+import { Arrow } from "@/components/Arrow";
 import Link from "next/link";
-import { EditorialImage } from "@/components/EditorialImage";
-import { centres } from "@/lib/centres";
+import { SectionHead, TextLink } from "@/components/Editorial";
+import { Bleed } from "@/components/Bleed";
+import { NextSteps } from "@/components/NextSteps";
+import { PageHeader } from "@/components/PageHeader";
+import { centres, districtId, districts } from "@/lib/centres";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata = pageMetadata("Centres", "Explore the institutes, monasteries, nunneries and retreat centres documented in the Ngagdra publication.", "/centres");
+export const metadata = pageMetadata(
+  "Centres",
+  "Across eastern Bhutan, retreat centres and places of practice carry connections to teachers, practitioners and communities that have sustained the tradition over generations.",
+  "/centres",
+);
 
-export default function Page() {
+export default function CentresPage() {
   const hub = centres.find((centre) => centre.hub)!;
   const network = centres.filter((centre) => !centre.hub);
-  const districts = [...new Set(network.map((centre) => centre.district))].sort();
-  return <>
-    <section className="centres-masthead"><div className="container centres-masthead__grid"><div><p className="eyebrow">Centres</p><h1>A retreat network across Bhutan.</h1><p className="lead">Ngagdra is the educational centre of a network of monasteries, nunneries and Drubdeys formed through lineage, teaching and community stewardship.</p></div><div className="centres-masthead__region"><span>Primary region</span><strong>Eastern Bhutan</strong><small>Mongar · Tashigang · Trashiyangtse · Lhuentse · Pemagatshel · Samdrup Jongkhar</small></div></div><EditorialImage src="/media/centres/retreat-centres.jpg" alt="Retreat buildings on a forested hillside in Bhutan" caption="Retreat houses set within the forested landscape of Eastern Bhutan." priority sizes="100vw" aspect="21 / 8" objectPosition="50% 48%" className="centres-masthead__image" /></section>
-    <section className="container centres-hub section-pad"><div><p className="eyebrow">Network hub · {hub.locality}, {hub.district}</p><h2>{hub.name}</h2><p>{hub.intro}</p><Link className="text-link" href={`/centres/${hub.slug}`}>Institute profile →</Link></div></section>
-    <section className="paper-band centres-directory-section section-pad"><div className="container centres-directory-header"><div><p className="eyebrow">Directory by district</p><h2>{network.length} centres in {districts.length} districts.</h2></div><p>Browse the historical network by place. Individual records include foundation dates, lineage connections, practice communities and sacred features.</p></div><nav className="container district-index" aria-label="Jump to a district">{districts.map((district) => <a key={district} href={`#district-${district.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>{district}<span>{network.filter((centre) => centre.district === district).length}</span></a>)}</nav><div className="container centre-directory">{districts.map((district) => { const districtCentres = network.filter((centre) => centre.district === district); return <section className="centre-district" id={`district-${district.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} key={district}><header><h3>{district}</h3><span>{districtCentres.length} {districtCentres.length === 1 ? "centre" : "centres"}</span></header><div>{districtCentres.map((centre) => <Link href={`/centres/${centre.slug}`} key={centre.slug}><div><h4>{centre.name}</h4>{centre.alternativeName ? <small>{centre.alternativeName}</small> : null}</div><p>{centre.locality}</p><b>{centre.type}</b><span aria-hidden="true">→</span></Link>)}</div></section>; })}</div></section>
-  </>;
+  return (
+    <>
+      <PageHeader
+        eyebrow="Our Network"
+        title="Beyond the walls of Ngagdra."
+        lead={[
+          "The story of Ngagdra is not contained within a single building.",
+          "Across eastern Bhutan, retreat centres and places of practice carry connections to teachers, practitioners and communities that have sustained the tradition over generations. Some grew from the meditation places of earlier masters. Others were restored or established when communities sought to revive places of practice. Together, they form a network of living spaces where practitioners can undertake periods of dedicated retreat and meditation.",
+        ]}
+        crumbs={[{ name: "Centres", path: "/centres" }]}
+        actions={<a className="button" href="#directory">Explore the retreat centres<Arrow direction="down" /></a>}
+      />
+
+      <Bleed priority images={[{ src: "/media/centres/retreat-centres.jpg", alt: "Retreat houses connected by paths on a forested hillside in eastern Bhutan", objectPosition: "50% 48%" }]} caption="Retreat houses on a forested hillside in eastern Bhutan." />
+
+      <section className="section section--brand" aria-labelledby="hub-title">
+        <div className="container rail">
+          <div className="rail__head">
+            <SectionHead id="hub-title" title={hub.name} />
+          </div>
+          <div className="rail__body prose">
+            {hub.summary.map((text) => <p key={text}>{text}</p>)}
+            <TextLink href={`/centres/${hub.slug}`}>Explore centre</TextLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--band" id="directory" aria-labelledby="directory-title">
+        <div className="container">
+          <div className="section-head section-head--wide">
+            <h2 id="directory-title">{network.length} places of practice across eastern Bhutan.</h2>
+          </div>
+          <nav aria-label="Jump to a Dzongkhag">
+            <ul className="district-index">
+              {districts.map((district) => (
+                <li key={district}><a href={`#${districtId(district)}`}>{district}<span>{network.filter((centre) => centre.district === district).length}</span></a></li>
+              ))}
+            </ul>
+          </nav>
+          {districts.map((district) => {
+            const list = network.filter((centre) => centre.district === district);
+            return (
+              <section className="directory-group" id={districtId(district)} key={district} aria-labelledby={`${districtId(district)}-title`}>
+                <header>
+                  <h3 id={`${districtId(district)}-title`}>{district}</h3>
+                  <p>{list.length} {list.length === 1 ? "place" : "places"} of practice</p>
+                </header>
+                <ul>
+                  {list.map((centre) => (
+                    <li className="directory-item" key={centre.slug}>
+                      <Link href={`/centres/${centre.slug}`}>
+                        <div>
+                          <h4>{centre.name}</h4>
+                          <span className="directory-item__meta">{centre.type} · {centre.place}</span>
+                        </div>
+                        <div className="directory-item__summary">
+                          {centre.summary.map((text) => <p key={text}>{text}</p>)}
+                          <span className="cue">Explore centre<Arrow /></span>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+        </div>
+      </section>
+      <NextSteps exclude="/centres" />
+    </>
+  );
 }

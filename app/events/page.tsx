@@ -1,27 +1,94 @@
+import { Arrow } from "@/components/Arrow";
 import Link from "next/link";
-import { EditorialImage } from "@/components/EditorialImage";
-import { events, publicPracticeGallery, recurringPractices } from "@/lib/content";
+import { Chronicle } from "@/components/Chronicle";
+import { Bleed } from "@/components/Bleed";
+import { NextSteps } from "@/components/NextSteps";
+import { PageHeader } from "@/components/PageHeader";
+import { eventStatus, eventsIntro, featuredEvent, pastEventsIntro, recentEvents } from "@/lib/events";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata = pageMetadata("Events", "Historical events and recurring public religious practices documented at Ngagdra Dorji Choegar.", "/events");
+export const metadata = pageMetadata("Events", eventsIntro.intro[0], "/events");
 
-function eventDateParts(date: string) {
-  const parsed = new Date(`${date}T00:00:00Z`);
-  return {
-    day: String(parsed.getUTCDate()),
-    month: parsed.toLocaleString("en-GB", { month: "long", timeZone: "UTC" }),
-    year: String(parsed.getUTCFullYear()),
-  };
-}
+// Re-render daily so event status labels stay current.
+export const revalidate = 86400;
 
-export default function Page() {
+const gallery = [
+  { src: "/media/events/public-practice-congregation-side.jpg", alt: "A gathered community seated beneath ceremonial canopies", objectPosition: "50% 50%" },
+  { src: "/media/events/teacher-during-public-teaching.jpg", alt: "A Buddhist teacher smiling during a public teaching", objectPosition: "50% 30%" },
+  { src: "/media/events/ceremonial-offering-procession.jpg", alt: "Practitioners carrying sacred objects and white ceremonial scarves", objectPosition: "45% 50%" },
+];
+
+export default function EventsPage() {
   return (
     <>
-      <section className="events-header container"><div><p className="eyebrow">Events</p><h1>Teachings, ceremonies and gatherings.</h1></div><p>Public religious practices and significant moments in the institutional record.</p><dl className="events-header__index"><div><dt>Annual</dt><dd>{recurringPractices.length} recurring practices</dd></div><div><dt>Archive</dt><dd>{events.length} documented event</dd></div></dl></section>
-      <section className="paper-band events-current"><div className="container events-current__grid"><div><p className="eyebrow">Current programme</p><h2>No public date is announced.</h2></div><p>The next public programme will be announced here. Annual practices and the historical record remain available below.</p></div></section>
-      <section className="container events-documentary"><header><p className="eyebrow">Community in practice</p><h2>Gathering for shared religious life.</h2><p>Public programmes bring teachers, practitioners and the wider community together for teaching, prayer and ceremonial practice.</p></header><div className="events-gallery">{publicPracticeGallery.map((image) => <EditorialImage {...image} key={image.src} sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1024px) 46vw, 42vw" />)}</div></section>
-      <section id="annual-practices" className="container events-recurring"><div className="events-section-label"><p className="eyebrow">Annual practice</p><span>Recurring programmes</span></div><div className="practice-list">{recurringPractices.map((practice) => <div key={practice}><span>Every year</span><strong>{practice}</strong></div>)}</div></section>
-      <section id="event-archive" className="container events-archive"><div className="events-archive__heading"><p className="eyebrow">Archive</p><h2>Institutional record</h2></div>{events.map((event) => { const { day, month, year } = eventDateParts(event.date); return <Link className="event-record" href={`/events/${event.slug}`} key={event.slug}><time dateTime={event.date}><span>{day}</span>{month}<br />{year}</time><div><p className="eyebrow">{event.category}</p><h2>{event.title}</h2><p>{event.dek}</p><small>{event.location}</small></div><b>↗</b></Link>; })}</section>
+      <PageHeader
+        eyebrow={eventsIntro.eyebrow}
+        title={eventsIntro.title}
+        lead={eventsIntro.intro}
+        crumbs={[{ name: "Events", path: "/events" }]}
+        aside={
+          <nav aria-label="On this page">
+            <ul className="page-index">
+              <li><a href="#featured">Featured event<Arrow direction="down" /></a></li>
+              <li><a href="#recent">Recent events<Arrow direction="down" /></a></li>
+              <li><a href="#chronicle">Past events, year by year<Arrow direction="down" /></a></li>
+            </ul>
+          </nav>
+        }
+      />
+
+      <section className="section section--brand" id="featured" aria-labelledby="featured-title">
+        <div className="container">
+          <h2 className="eyebrow" id="featured-title">Featured event</h2>
+          <Link className="featured-event" href={`/events/${featuredEvent.slug}`}>
+            <div className="featured-event__when">
+              <time dateTime={featuredEvent.date}>{featuredEvent.dateLabel}</time>
+              <span>{featuredEvent.label}</span>
+              <span className="status">{eventStatus(featuredEvent)}</span>
+            </div>
+            <div className="featured-event__copy">
+              <h3>{featuredEvent.title}</h3>
+              {featuredEvent.summary.map((text) => <p key={text}>{text}</p>)}
+              <span className="cue">View event<Arrow /></span>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      <section className="section" id="recent" aria-labelledby="recent-title">
+        <div className="container rail">
+          <div className="rail__head">
+            <h2 id="recent-title">Recent events</h2>
+          </div>
+          <ol className="rail__body event-list">
+            {recentEvents.map((event) => (
+              <li key={event.slug}>
+                <Link href={`/events/${event.slug}`}>
+                  <time dateTime={event.date}>{event.dateLabel}</time>
+                  <span className="event-list__label">{event.label}</span>
+                  <strong>{event.title}</strong>
+                  <span className="event-list__text">{event.summary[0]}</span>
+                  <span className="cue">View event<Arrow /></span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <Bleed images={gallery} caption="Public practice: the gathered community, a teacher during a public teaching, and sacred objects carried in procession." />
+
+      <section className="section" id="chronicle" aria-labelledby="chronicle-title">
+        <div className="container">
+          <div className="section-head section-head--wide">
+            <h2 id="chronicle-title">{pastEventsIntro.title}</h2>
+            <p>{pastEventsIntro.intro}</p>
+          </div>
+          <Chronicle />
+        </div>
+      </section>
+
+      <NextSteps exclude="/events" />
     </>
   );
 }

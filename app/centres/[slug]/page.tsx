@@ -1,27 +1,81 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageHero } from "@/components/PageHero";
-import { centres, getCentre } from "@/lib/centres";
-import { pageMetadata, breadcrumbJsonLd, jsonLd } from "@/lib/seo";
+import { StoryBlocks, TextLink } from "@/components/Editorial";
+import { PageHeader } from "@/components/PageHeader";
+import { centres, districtId, getCentre } from "@/lib/centres";
+import { jsonLd, pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 
-export function generateStaticParams() { return centres.map(({ slug }) => ({ slug })); }
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; const centre = getCentre(slug); return centre ? pageMetadata(centre.name, centre.intro, `/centres/${slug}`) : {}; }
+export function generateStaticParams() {
+  return centres.map(({ slug }) => ({ slug }));
+}
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params; const centre = getCentre(slug); if (!centre) notFound();
-  const related = centres.filter((item) => item.slug !== slug && (item.district === centre.district || item.hub)).slice(0, 3);
-  const bc = breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Centres", path: "/centres" }, { name: centre.name, path: `/centres/${centre.slug}` }]);
-  return <>
-    <PageHero variant="place" eyebrow={`${centre.locality} · ${centre.district} · ${centre.type}`} title={centre.name} intro={centre.intro} image={centre.heroImage ? { ...centre.heroImage, priority: true, sizes: "(max-width: 980px) calc(100vw - 48px), 42vw", aspect: "4 / 3" } : undefined} />
-    <section className="container centre-facts"><div><p className="eyebrow">Type</p><strong>{centre.type}</strong></div><div><p className="eyebrow">Historical period</p><strong>{centre.historicalPeriod}</strong></div><div><p className="eyebrow">Source</p><strong>Publication pages {centre.source.pages.join(", ")}</strong></div></section>
-    <section className="container article-sections section-pad">
-      <article><div><h2>Origins</h2><p>{centre.origin}</p>{centre.founder ? <p><strong>Founder or early figure:</strong> {centre.founder}</p> : null}</div></article>
-      <article><div><h2>Relationship with Rinpoche</h2><p>{centre.relationshipToRinpoche}</p></div></article>
-      <article><div><h2>Relationship with Ngagdra</h2><p>{centre.relationshipToNgagdra}</p></div></article>
-    </section>
-    {centre.majorDates.length ? <section className="paper-band section-pad"><div className="container"><p className="eyebrow">Historical timeline</p><div className="centre-timeline">{centre.majorDates.map((item) => <article key={`${item.date}-${item.title}`}><strong>{item.date}</strong><div><h3>{item.title}</h3><p>{item.detail}</p></div></article>)}</div></div></section> : null}
-    <section className="container section-pad centre-practice-grid"><div><p className="eyebrow">Practitioners</p><h2>Practice at the centre</h2><p>{centre.practitionerType}</p>{centre.retreatDurations.length ? <ul>{centre.retreatDurations.map((item) => <li key={item}>{item}</li>)}</ul> : null}</div>{centre.sacredFeatures.length ? <div><p className="eyebrow">Sacred features</p><h2>Heritage at the site</h2><ul>{centre.sacredFeatures.map((item) => <li key={item}>{item}</li>)}</ul></div> : null}</section>
-    <section className="container section-pad"><div className="section-heading"><p className="eyebrow">Related centres</p><h2>Continue through the network.</h2></div><div className="related-links">{related.map((item) => <Link href={`/centres/${item.slug}`} key={item.slug}><span>{item.locality} · {item.district}</span><strong>{item.name}</strong></Link>)}</div></section>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(bc) }} />
-  </>;
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const centre = getCentre(slug);
+  return centre ? pageMetadata(centre.name, centre.summary[0], `/centres/${slug}`) : {};
+}
+
+export default async function CentrePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const centre = getCentre(slug);
+  if (!centre) notFound();
+
+  const index = centres.findIndex((item) => item.slug === slug);
+  const previous = centres[index - 1];
+  const next = centres[index + 1];
+  const place = {
+    "@context": "https://schema.org",
+    "@type": centre.hub ? ["EducationalOrganization", "Place"] : "Place",
+    name: centre.name,
+    description: centre.summary[0],
+    url: `${site.url}/centres/${centre.slug}`,
+    address: { "@type": "PostalAddress", addressRegion: centre.district, addressCountry: "BT" },
+    ...(centre.hub ? { "@id": `${site.url}/#organization` } : { containedInPlace: { "@type": "AdministrativeArea", name: `${centre.district}, Bhutan` } }),
+  };
+
+  return (
+    <>
+      <PageHeader
+        title={centre.name}
+        lead={centre.story.dek}
+        dek
+        crumbs={[{ name: "Centres", path: "/centres" }, { name: centre.name, path: `/centres/${centre.slug}` }]}
+        image={centre.image ? { ...centre.image, priority: true, sizes: "(max-width: 860px) calc(100vw - 40px), 36vw" } : undefined}
+      />
+
+      <section className="section">
+        <div className="container rail">
+          <aside className="rail__head" aria-label="In brief">
+            <h2 className="brief__title">In brief</h2>
+            <dl className="facts facts--compact">
+              <div><dt>Type</dt><dd>{centre.type}</dd></div>
+              <div><dt>Location</dt><dd>{centre.place}</dd></div>
+              <div><dt>Dzongkhag</dt><dd>{centre.district}</dd></div>
+            </dl>
+            <div className="brief">
+              {centre.summary.map((text) => <p key={text}>{text}</p>)}
+            </div>
+            <TextLink href={`/centres#${districtId(centre.district)}`} className="text-link--small">More in {centre.district}</TextLink>
+          </aside>
+          <article className="rail__body prose story" aria-label={centre.story.title}>
+            {centre.story.sections.map((section, sectionIndex) => (
+              <section key={section.heading ?? sectionIndex}>
+                {section.heading ? <h2>{section.heading}</h2> : null}
+                <StoryBlocks blocks={section.body} />
+              </section>
+            ))}
+          </article>
+        </div>
+      </section>
+
+      <nav className="container pager-wrap" aria-label="More centres">
+        <div className="pager">
+          {previous ? <Link href={`/centres/${previous.slug}`}><span>Previous centre</span><strong>{previous.name}</strong></Link> : <Link href="/centres"><span>Back to</span><strong>All centres</strong></Link>}
+          {next ? <Link href={`/centres/${next.slug}`}><span>Next centre</span><strong>{next.name}</strong></Link> : <Link href="/centres"><span>Back to</span><strong>All centres</strong></Link>}
+        </div>
+      </nav>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(place) }} />
+    </>
+  );
 }

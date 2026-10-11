@@ -1,2 +1,31 @@
-import type { MetadataRoute } from "next";import { site } from "@/lib/site";import { workPillars,stories,events } from "@/lib/content";import { centres } from "@/lib/centres";
-export default function sitemap():MetadataRoute.Sitemap{const paths=["","/about","/about/rinpoche","/about/history","/about/heritage","/about/milestones","/our-work","/centres","/events","/stories","/visit","/support",...centres.map(c=>`/centres/${c.slug}`),...workPillars.map(p=>`/our-work/${p.slug}`),...stories.map(s=>`/stories/${s.slug}`),...events.map(e=>`/events/${e.slug}`)];return paths.map((path)=>({url:new URL(path,site.url).toString(),lastModified:new Date(),changeFrequency:path.startsWith("/stories")||path==="/events"?"monthly":"yearly",priority:path===""?1:path.split("/").length<=2?.8:.6}))}
+import type { MetadataRoute } from "next";
+import { centres } from "@/lib/centres";
+import { allEvents } from "@/lib/events";
+import { site } from "@/lib/site";
+import { articles } from "@/lib/stories";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const paths = [
+    "",
+    "/about",
+    "/about/rinpoche",
+    "/about/history",
+    "/about/heritage",
+    "/about/milestones",
+    "/our-work",
+    "/centres",
+    "/events",
+    "/stories",
+    "/visit",
+    "/support",
+    ...centres.map((centre) => `/centres/${centre.slug}`),
+    ...allEvents.map((event) => `/events/${event.slug}`),
+    ...articles.map((article) => `/stories/${article.slug}`),
+  ];
+  return paths.map((path) => ({
+    url: new URL(path, site.url).toString(),
+    lastModified: new Date(),
+    changeFrequency: path.startsWith("/events") || path.startsWith("/stories") ? "monthly" : "yearly",
+    priority: path === "" ? 1 : path.split("/").length <= 2 ? 0.8 : 0.6,
+  }));
+}

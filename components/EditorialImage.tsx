@@ -10,6 +10,8 @@ export type EditorialImageProps = {
   objectPosition?: string;
   objectFit?: "cover" | "contain";
   className?: string;
+  /** false sets a cut-out illustration straight on the page, with no tinted frame behind it. */
+  frame?: boolean;
 };
 
 export function EditorialImage({
@@ -22,12 +24,13 @@ export function EditorialImage({
   objectPosition = "50% 50%",
   objectFit = "cover",
   className = "",
+  frame = true,
 }: EditorialImageProps) {
   return (
-    <figure className={`editorial-image ${className}`.trim()}>
+    <figure className={`editorial-image${frame ? "" : " editorial-image--bare"} ${className}`.trim()}>
       <div
         className={`editorial-image__media editorial-image__media--${objectFit}`}
-        style={{ aspectRatio: aspect }}
+        style={{ ["--aspect" as string]: aspect }}
       >
         <Image
           src={src}

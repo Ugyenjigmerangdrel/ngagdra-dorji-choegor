@@ -1,1 +1,19 @@
-import { site } from "@/lib/site";export async function GET(){const text=`# ${site.name}\n\n${site.description}\n\n## Core pages\n- ${site.url}/about: institutional overview\n- ${site.url}/our-work: education, retreat preparation, preservation, sacred arts, public practice\n- ${site.url}/centres: institute and retreat-centre network\n- ${site.url}/events: verified current and archived events\n- ${site.url}/stories: historical and editorial archive\n- ${site.url}/visit: visitor information\n- ${site.url}/support: source-identified needs\n\n## Source note\nTime-sensitive statistics and visitor details should be considered current only when explicitly verified on the page.\n`;return new Response(text,{headers:{"Content-Type":"text/plain; charset=utf-8"}})}
+import { site } from "@/lib/site";
+
+export async function GET() {
+  const text = `# ${site.name}
+
+${site.description}
+
+## Core pages
+- ${site.url}/about: who we are, lineage, heritage, founder and milestones
+- ${site.url}/about/rinpoche: biography of H.E. Gyeltshen Trulku Rinpoche
+- ${site.url}/our-work: education, retreat preparation, preservation, sacred arts and public practice
+- ${site.url}/centres: the institute and the retreat centres of the Ngagdra network, with a story for each
+- ${site.url}/events: the living chronicle of teachings, ceremonies and gatherings
+- ${site.url}/stories: stories from a living tradition
+- ${site.url}/visit: visitor guidance
+- ${site.url}/support: what a retreat requires and current priority needs
+`;
+  return new Response(text, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
+}

@@ -1,18 +1,55 @@
-import Link from "next/link";
-import { PageHero } from "@/components/PageHero";
-import { ProseSection } from "@/components/ProseSection";
+import { Arrow } from "@/components/Arrow";
+import { AboutNav, AboutPager } from "@/components/AboutNav";
+import { EditorialImage } from "@/components/EditorialImage";
+import { TextLink } from "@/components/Editorial";
+import { PageHeader } from "@/components/PageHeader";
+import { heritage } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata = pageMetadata("Heritage", "Hey Vajra, sacred arts, Buddhist texts and practice traditions documented at Ngagdra and its retreat network.", "/about/heritage");
+export const metadata = pageMetadata("Our Heritage", heritage.intro, "/about/heritage");
 
-export default function Page() { return <>
-  <PageHero variant="archive" eyebrow="Heritage" title="Teachings and sacred arts maintained through practice." intro="Ngagdra and its retreat network study and transmit teachings through oral transmission, texts, contemplation, ritual and extended retreat. The publication also records major sacred artworks at several centres." image={{ src: "/media/heritage/ritual-assembly.jpg", alt: "Practitioners gathered for a ritual assembly inside a decorated hall", priority: true, sizes: "(max-width: 980px) calc(100vw - 48px), 42vw", aspect: "4 / 3", objectPosition: "58% 50%" }} />
-  <ProseSection eyebrow="Ngagdra" title="Hey Vajra"><p>The institute houses a major statue of Hey Vajra, identified by the publication as a principal meditative deity associated with Marpa Lotsawa.</p><p>H.H. the 70th Je Khenpo, Trulku Jigme Choedra, formally consecrated the statue and institute on 30 October 2015. His Royal Highness Gyaltshab Jigme Dorji Wangchuck attended with Her Royal Highness Azhi Yeatso Lhamo.</p></ProseSection>
-  <section className="container section-pad"><div className="section-heading"><p className="eyebrow">Across the network</p><h2>Works documented by the publication.</h2></div><div className="heritage-grid">
-    <article><p className="eyebrow">Togden Choeling</p><h3>Three-dimensional Chakrasamvara mandala</h3><p>The mandala is housed in the temple at the Gongthung retreat centre.</p></article>
-    <article><p className="eyebrow">Khabti</p><h3>Dampa Rigja wall painting</h3><p>The work depicts deities visualized during an intensive period within the retreat programme.</p></article>
-    <article><p className="eyebrow">Khabti</p><h3>Longevity Buddha mandala</h3><p>A three-dimensional mandala is housed in the Khesar Namgyel Choeling temple.</p></article>
-    <article><p className="eyebrow">Ngagdra</p><h3>Buddhist texts</h3><p>The institute library holds Buddhist texts used in study and training.</p></article>
-  </div></section>
-  <ProseSection eyebrow="Living transmission" title="How practices continue"><p>Rinpoche’s work with Drukpa Kagyud and Nyingma teachings includes Gayjor Duenpa and Guru Dewa. Teachings are explained, received through oral transmission, practised, documented through commentaries and manuals, and continued in retreat.</p><Link className="text-link" href="/our-work/preserving-living-traditions">How traditions are continued →</Link></ProseSection>
-</>; }
+const figures: Record<string, { src: string; alt: string; caption: string; objectPosition?: string }> = {
+  "teachings-and-texts": { src: "/media/heritage/ceremonial-proceedings.jpg", alt: "Monks in ceremonial dress playing ritual instruments in procession", caption: "Ceremonial proceedings within the living practice tradition.", objectPosition: "60% 45%" },
+  "sacred-arts": { src: "/media/heritage/ritual-assembly.jpg", alt: "A ritual assembly inside a richly painted temple hall", caption: "A ritual assembly inside a painted temple hall.", objectPosition: "56% 50%" },
+};
+
+export default function HeritagePage() {
+  return (
+    <>
+      <AboutNav current="/about/heritage" />
+      <PageHeader
+        eyebrow={heritage.eyebrow}
+        title={heritage.title}
+        lead={heritage.intro}
+        crumbs={[{ name: "About", path: "/about" }, { name: "Our Heritage", path: "/about/heritage" }]}
+        aside={
+          <nav aria-label="On this page">
+            <p className="eyebrow">On this page</p>
+            <ul className="page-index">
+              {heritage.sections.map((section) => <li key={section.id}><a href={`#${section.id}`}>{section.title}<Arrow direction="down" /></a></li>)}
+            </ul>
+          </nav>
+        }
+      />
+      {heritage.sections.map((section, index) => {
+        const figure = figures[section.id];
+        return (
+          <section className={`section${index === 1 ? " section--band" : index ? " section--rule" : ""}`} id={section.id} key={section.id} aria-labelledby={`${section.id}-title`}>
+            <div className="container rail">
+              <div className="rail__head">
+                <h2 id={`${section.id}-title`}>{section.title}</h2>
+                {figure ? <EditorialImage {...figure} sizes="(max-width: 860px) calc(100vw - 40px), 30vw" aspect="4 / 3" className="rail__figure" /> : null}
+              </div>
+              <div className="rail__body prose">
+                {section.paragraphs.map((text) => <p key={text}>{text}</p>)}
+                {section.id === "sacred-arts" ? <TextLink href="/centres/togden-choeling-drubdey">Togden Choeling Drubdey</TextLink> : null}
+                {section.id === "practice-traditions" ? <TextLink href="/our-work">Explore our work</TextLink> : null}
+              </div>
+            </div>
+          </section>
+        );
+      })}
+      <AboutPager current="/about/heritage" />
+    </>
+  );
+}

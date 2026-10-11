@@ -19,6 +19,13 @@ export function Header() {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
 
+  // While the mobile menu is open, the page behind it does not scroll.
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("menu-open", open);
+    return () => root.classList.remove("menu-open");
+  }, [open]);
+
   useEffect(() => {
     let frame = 0;
     const update = () => {

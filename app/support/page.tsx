@@ -1,17 +1,102 @@
+import { Arrow } from "@/components/Arrow";
 import Link from "next/link";
-import { EditorialImage } from "@/components/EditorialImage";
+import { Bleed } from "@/components/Bleed";
+import { SectionHead, Stats, TextLink } from "@/components/Editorial";
+import { PageHeader } from "@/components/PageHeader";
+import { RetreatIcon } from "@/components/RetreatIcon";
+import { getCentre } from "@/lib/centres";
+import { networkAtAGlance, support } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
+import { contactPending } from "@/lib/site";
 
-export const metadata = pageMetadata("Support the Institute", "Learn what support can sustain at Ngagdra Dorji Choegar, from education and retreat practice to preservation and essential facilities.", "/support");
-const areas = [["Education", "Teaching spaces, study materials and the daily needs of practitioners."], ["Retreat practice", "Retreat houses and the conditions needed for sustained practice."], ["Preservation", "Buddhist texts, oral transmission, sacred arts and living practice traditions."], ["Infrastructure", "Accommodation, water, sanitation, kitchens, access routes and essential facilities."], ["Where most needed", "Support directed by the institute to its most immediate responsibility."]];
+export const metadata = pageMetadata("Support", `${support.lead} ${support.requires.closing}`, "/support");
 
-export default function Page() {
+export default function SupportPage() {
+  const needs = support.needs.items.map((item) => ({ ...item, centre: getCentre(item.centre)! }));
   return (
     <>
-      <header className="container support-hero"><p className="eyebrow">Support</p><div><h1>Contribute to the work.</h1><p className="lead">Support sustains Vajrayana education, retreat practice, living traditions and the essential places in which they continue.</p></div></header>
-      <section className="container support-evidence"><EditorialImage src="/media/centres/gawa-mani-chorten-construction.jpg" alt="Community members working around the Gawa Mani chorten during construction" caption="Communal work during construction of the Gawa Mani chorten." priority sizes="(max-width: 680px) calc(100vw - 40px), 70vw" aspect="16 / 9" objectPosition="50% 50%" /><div><p className="eyebrow">Why support matters</p><p>Contributions are practical: they support people, buildings, study and long periods of retreat across Ngagdra’s institutional network.</p></div></section>
-      <section className="paper-band support-areas-section"><div className="container support-areas-layout"><header><p className="eyebrow">What support sustains</p><h2>Five areas of responsibility.</h2></header><div className="support-areas">{areas.map(([title, body], index) => <div key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{body}</p></div></div>)}</div></div></section>
-      <section id="contribution" className="support-action"><div className="container support-action__grid"><div><p className="eyebrow">Contribution guidance</p><h2>Confirm arrangements before sending funds.</h2></div><div><p>The institute publication records education, retreat houses, texts, sacred arts and essential facilities across the network. The institute determines where support is directed according to current need.</p><p>Direct contribution details are not yet published on this website.</p><Link className="button button--light" href="/visit#visitor-information">Visit and contact guidance <span>→</span></Link></div></div></section>
+      <PageHeader
+        title={support.title}
+        lead={support.lead}
+        crumbs={[{ name: "Support", path: "/support" }]}
+        aside={
+          <nav aria-label="On this page">
+            <ul className="page-index">
+              <li><a href="#who-we-support">Who we support<Arrow direction="down" /></a></li>
+              <li><a href="#what-a-retreat-requires">What a retreat requires<Arrow direction="down" /></a></li>
+              <li><a href="#priority-needs">Current priority needs<Arrow direction="down" /></a></li>
+              <li><a href="#how-to-support">How to support<Arrow direction="down" /></a></li>
+            </ul>
+          </nav>
+        }
+      />
+
+      <section className="section section--brand" id="who-we-support" aria-labelledby="who-title">
+        <div className="container rail rail--top">
+          <div className="rail__head">
+            <SectionHead id="who-title" eyebrow="Who we support" title={networkAtAGlance.title} intro={networkAtAGlance.intro} />
+          </div>
+          <div className="rail__body">
+            <Stats className="stats--large" items={networkAtAGlance.stats} />
+            <p className="note">{networkAtAGlance.peopleNote}</p>
+            <TextLink href={networkAtAGlance.action.href}>{networkAtAGlance.action.label}</TextLink>
+          </div>
+        </div>
+      </section>
+
+      <Bleed images={[{ src: "/media/centres/gawa-mani-chorten-construction.jpg", alt: "Community members working around a chorten under construction on a hillside", objectPosition: "50% 55%" }]} caption="Communal work during construction of the Gawa Mani chorten." />
+
+      <section className="section section--band" id="what-a-retreat-requires" aria-labelledby="requires-title">
+        <div className="container">
+          <div className="section-head section-head--wide">
+            <h2 id="requires-title">{support.requires.title}</h2>
+            <p>{support.requires.intro}</p>
+          </div>
+          <ul className="requires">
+            {support.requires.items.map((item) => (
+              <li key={item.title}>
+                <RetreatIcon name={item.icon} />
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="requires-closing">{support.requires.closing}</p>
+        </div>
+      </section>
+
+      <section className="section" id="priority-needs" aria-labelledby="needs-title">
+        <div className="container rail">
+          <div className="rail__head">
+            <SectionHead id="needs-title" eyebrow={support.needs.eyebrow} title={support.needs.title} />
+          </div>
+          <ul className="rail__body needs">
+            {needs.map((need) => (
+              <li key={need.centre.slug}>
+                <Link href={`/centres/${need.centre.slug}`}>
+                  <span className="needs__place">{need.centre.type} · {need.centre.place}</span>
+                  <strong>{need.centre.name}</strong>
+                  <p>{need.text}</p>
+                  <span className="cue">Explore centre<Arrow /></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="closing" id="how-to-support" aria-labelledby="how-title">
+        <div className="container grid closing__grid">
+          <div className="closing__copy">
+            <h2 id="how-title">{support.how.title}</h2>
+            <p className="lead">The institute determines where support is directed according to current need. Direct contribution details are not yet published on this website.</p>
+          </div>
+          <div className="closing__actions">
+            <p className="pending-note pending-note--light">{contactPending}</p>
+            <Link className="button button--light" href="/centres">Explore the centres</Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

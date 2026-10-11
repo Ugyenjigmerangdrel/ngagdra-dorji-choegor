@@ -1,16 +1,51 @@
-import Link from "next/link";
-import { EditorialImage } from "@/components/EditorialImage";
-import { PageHero } from "@/components/PageHero";
-import { ProseSection } from "@/components/ProseSection";
+import { AboutNav, AboutPager } from "@/components/AboutNav";
+import { TextLink } from "@/components/Editorial";
+import { PageHeader } from "@/components/PageHeader";
+import { lineage } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata = pageMetadata("Lineage & History", "Thruelzhig Gyeltshen Marpo, his training under Togden Shakya Shri and the lineage continued by H.E. Gyeltshen Trulku Rinpoche.", "/about/history");
+export const metadata = pageMetadata("Lineage and History", lineage.intro, "/about/history");
 
-export default function Page() { return <>
-  <PageHero variant="archive" eyebrow="Lineage & History" title="From Thruelzhig Gyeltshen Marpo to Ngagdra." intro="The institute publication traces a line of teaching and practice from Togden Shakya Shri through Thruelzhig Gyeltshen Marpo and Drubwang Lama Sonam Zangpo to the present Gyeltshen Trulku Rinpoche." image={{ src: "/media/rinpoche/early-life.jpg", alt: "Archival group photograph from the early life of H.E. Gyeltshen Trulku Rinpoche", priority: true, sizes: "(max-width: 980px) calc(100vw - 48px), 42vw", aspect: "4 / 3", objectFit: "contain" }} />
-  <ProseSection eyebrow="1875–1950" title="Thruelzhig Gyeltshen Marpo"><p>According to the publication, he was born in 1875 to Ngawang and Ngoedrupmo at Kurtoe Minjey in Lhuentse. At about nineteen an axe injury left him bedridden for a year, during which he learned to read Buddhist texts.</p><p>He later studied under Lama Chonyid Rangdroel at Ka-bab Choeling Monastery. After periods of retreat at Singye Dzong and Roelmoteng, he travelled to Kham in Eastern Tibet to seek teachings from Drubwang Shakya Shri.</p></ProseSection>
-  <ProseSection eyebrow="Teaching and practice" title="Mahamudra and Great Perfection"><p>The publication records that he received general instructions in Mahamudra and Great Perfection. It says he was one of three disciples to receive a complete cycle referred to as the Jewel Essence of Great Perfection and received the name Kuenzang Pema Dechen Tsel.</p><p>His practice sites included Singye Dzong, Roelmoteng, Minjey, Zham, Tag Goenpa, Wag Goenpa, Aja Phagmorong and Maratika in Nepal, together with other places listed in the publication.</p></ProseSection>
-  <section className="paper-band section-pad"><div className="container"><p className="eyebrow">Lineage relationship</p><div className="lineage-flow">{["Togden Shakya Shri", "Thruelzhig Gyeltshen Marpo", "Drubwang Lama Sonam Zangpo and the transmission tradition", "H.E. Gyeltshen Trulku Rinpoche", "Ngagdra education and retreat communities"].map((name, index) => <div key={name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{name}</strong></div>)}</div><p className="source-note">This diagram shows relationships described across pages 2 to 7. It does not imply that each connection is identical in kind.</p></div></section>
-  <ProseSection eyebrow="Disciples" title="Transmission to a wider community"><p>The publication records at least 108 disciples. Among those named are Ngagtoen Kalo, Ngagtoen Yalo, Lopon Pema Wangchuk, Ani Yoesel Choeden, Jigme Droelma, Yeshi Zangmo, Tenzin Pelmo and Lama Sonam Zangpo.</p><p>Thruelzhig Gyeltshen Marpo died in 1950. The publication identifies the present Kuenzang Tenpai Gyeltshen, recognized by Drubwang Lama Sonam Zangpo, as his reincarnation.</p><Link className="text-link" href="/stories/lineage-thruelzhig-gyeltshen-marpo">Read the longer history →</Link></ProseSection>
-  <section className="container archival-figure-section"><EditorialImage src="/media/rinpoche/early-group-archive.jpg" alt="Archival group portrait of Buddhist teachers and practitioners" caption="Archival group photograph from the supplied publication." sizes="(max-width: 680px) calc(100vw - 80px), 520px" aspect="3 / 4" objectFit="contain" className="archival-figure archival-figure--modest" /></section>
-</>; }
+export default function LineagePage() {
+  return (
+    <>
+      <AboutNav current="/about/history" />
+      <PageHeader
+        eyebrow={lineage.eyebrow}
+        kicker={lineage.kicker}
+        title={lineage.title}
+        lead={lineage.intro}
+        crumbs={[{ name: "About", path: "/about" }, { name: "Lineage and History", path: "/about/history" }]}
+        image={{ src: "/media/rinpoche/early-group-archive.jpg", alt: "Archival group portrait of Buddhist teachers and young practitioners", caption: "An archival group photograph of teachers and practitioners.", priority: true, sizes: "(max-width: 860px) calc(100vw - 40px), 34vw", aspect: "4 / 5", objectFit: "contain" }}
+      />
+
+      <section className="section" aria-label="The lineage">
+        <div className="container rail">
+          <div className="rail__head">
+            <p className="eyebrow">Line of transmission</p>
+            <ol className="lineage">
+              {lineage.chain.map((name) => <li key={name}><strong>{name}</strong></li>)}
+            </ol>
+          </div>
+          <div className="rail__body prose">
+            {lineage.overview.map((text) => <p key={text}>{text}</p>)}
+            <TextLink href="/about/rinpoche">Read the biography</TextLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--band" id="researchers" aria-labelledby="researchers-title">
+        <div className="container rail">
+          <div className="rail__head">
+            <h2 id="researchers-title">{lineage.researchers.title}</h2>
+          </div>
+          <div className="rail__body prose">
+            {lineage.researchers.paragraphs.map((text) => <p key={text}>{text}</p>)}
+            <TextLink href="/about/heritage">Our vision</TextLink>
+          </div>
+        </div>
+      </section>
+      <AboutPager current="/about/history" />
+    </>
+  );
+}

@@ -39,11 +39,14 @@ The interface uses warm paper, ink typography, restrained maroon, asymmetrical e
 Important: no technical implementation can guarantee ranking. Search performance still depends on unique authoritative content, links/mentions, consistent publishing, image quality, page experience, and correct information.
 
 ## Content system
-Edit:
-- `lib/content.ts` for work pillars and stories
-- `lib/site.ts` for core site identity
-- route pages for long-form institutional content
-- `content/VERIFICATION-CHECKLIST.md` before publishing
+All page copy comes from the institute's content documents (Website Content, September 2026) and is kept verbatim; only typographic spacing and dash punctuation were normalised.
+- `lib/content.ts`: home, About (institute, Rinpoche, lineage, heritage, milestones), Our Work, Support
+- `lib/centres.ts`: the brief and the full story for every centre
+- `lib/events.ts`: featured, recent and archive events, and the full chronicle by year
+- `lib/stories.ts`: the Stories landing page and published articles. A teaser without an `href` shows as "In preparation" until its article exists
+- `lib/site.ts`: core site identity
+
+Pages are composed from shared components (`PageHeader`, `SectionHead`, `Teaser`, `Steps`, `Stats`, `NetworkTree`, `Chronicle`) and one stylesheet, `app/globals.css`. Add new pages from those patterns rather than page-specific CSS.
 
 ## Photography
 The source site should use institute-owned or commissioned documentary photography. Visual placeholders are intentional so this codebase does not silently ship third-party copyrighted images.
