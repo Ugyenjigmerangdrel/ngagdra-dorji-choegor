@@ -1,3 +1,5 @@
+import { fillSizes } from "@/lib/images";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { Breadcrumbs, type Crumb } from "@/components/Breadcrumbs";
 import { EditorialImage, type EditorialImageProps } from "@/components/EditorialImage";
@@ -14,6 +16,8 @@ type PageHeaderProps = {
   /** Quiet supporting column: key facts, an index or a note. */
   aside?: ReactNode;
   image?: EditorialImageProps;
+  /** A photograph behind the whole header. Without one the header sits on the deep brand ground. */
+  cover?: { src: string; objectPosition?: string; caption?: string };
   /** "side" sets the image beside the copy; "wide" runs it the full content width below. */
   imageLayout?: "side" | "wide";
   display?: boolean;
@@ -22,14 +26,16 @@ type PageHeaderProps = {
 };
 
 /**
- * The single header pattern for every page: eyebrow, title and lead on the left
- * seven columns, with either an aside, a side image or a wide image below.
+ * The single header pattern for every page: eyebrow, title and lead on the left,
+ * with either an aside, a side image or a wide image below. It runs under the site
+ * header, over a photograph (`cover`) or on the deep brand ground.
  */
-export function PageHeader({ eyebrow, title, lead, kicker, crumbs, actions, aside, image, imageLayout = "side", display = false, dek = false }: PageHeaderProps) {
+export function PageHeader({ eyebrow, title, lead, kicker, crumbs, actions, aside, image, imageLayout = "side", display = false, dek = false, cover }: PageHeaderProps) {
   const leads = lead === undefined ? [] : Array.isArray(lead) ? lead : [lead];
   const side = image && imageLayout === "side";
   return (
-    <header className={`page-header${display ? " page-header--display" : ""}${side ? " page-header--side" : ""}`}>
+    <header className={`page-header cinema${cover ? " page-header--cover" : ""}${display ? " page-header--display" : ""}${side ? " page-header--side" : ""}`}>
+      {cover ? <Image quality={90} className="page-header__cover" src={cover.src} alt="" fill priority sizes={fillSizes} style={{ objectFit: "cover", objectPosition: cover.objectPosition ?? "50% 50%" }} /> : null}
       <div className="container grid page-header__grid">
         <div className="page-header__copy">
           {crumbs ? <Breadcrumbs items={crumbs} /> : null}

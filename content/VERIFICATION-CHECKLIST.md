@@ -16,6 +16,8 @@ The site intentionally leaves uncertain facts out of structured data and operati
 - [ ] Dzongkha translations and script line-height review.
 - [ ] Current network centre names, types, locations, management and active programmes.
 - [ ] Rights/credits for all photography and archival material.
+- [ ] Story "The journey between retreats": confirm or replace the three in-body photographs. They are library photographs with general captions, not photographs of the February and March 2026 gatherings the story describes: `centres/retreat-centres.jpg`, `rinpoche/with-retreat-practitioners.jpg`, `education/ngagdra-monks.jpg` (set in `lib/stories.ts`).
+- [ ] Closers and closing panels reuse page photographs as backgrounds (About chapters, the four closing links, the home and support closing bands): confirm each is acceptable in that position.
 - [ ] Final official emblem/vector assets and favicon variant.
 
 ## Source-grounded facts currently used

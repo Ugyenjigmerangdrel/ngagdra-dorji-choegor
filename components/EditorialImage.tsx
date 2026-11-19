@@ -3,6 +3,7 @@ import Image from "next/image";
 export type EditorialImageProps = {
   src: string;
   alt: string;
+  /** Kept with the image record but not shown: captions under photographs were removed (client request, 2026-11-19). */
   caption?: string;
   priority?: boolean;
   sizes?: string;
@@ -17,7 +18,6 @@ export type EditorialImageProps = {
 export function EditorialImage({
   src,
   alt,
-  caption,
   priority = false,
   sizes = "(max-width: 680px) calc(100vw - 40px), (max-width: 980px) 75vw, 50vw",
   aspect = "4 / 3",
@@ -32,7 +32,7 @@ export function EditorialImage({
         className={`editorial-image__media editorial-image__media--${objectFit}`}
         style={{ ["--aspect" as string]: aspect }}
       >
-        <Image
+        <Image quality={90}
           src={src}
           alt={alt}
           fill
@@ -41,7 +41,6 @@ export function EditorialImage({
           style={{ objectFit, objectPosition }}
         />
       </div>
-      {caption ? <figcaption>{caption}</figcaption> : null}
     </figure>
   );
 }

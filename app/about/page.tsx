@@ -1,5 +1,4 @@
 import { AboutNav, AboutPager } from "@/components/AboutNav";
-import { Bleed } from "@/components/Bleed";
 import { EditorialImage } from "@/components/EditorialImage";
 import { SectionHead, TextLink } from "@/components/Editorial";
 import { PageHeader } from "@/components/PageHeader";
@@ -12,13 +11,14 @@ export default function AboutPage() {
   const today = milestones.entries.find((entry) => entry.id === "today")!;
   return (
     <>
-      <AboutNav current="/about" />
       <PageHeader
         kicker={about.indexTitle}
         title={sentences(about.title).map((line) => <span className="line" key={line}>{line}</span>)}
         lead={about.intro}
         crumbs={[{ name: "About", path: "/about" }]}
+        cover={{ src: "/media/education/ngagdra-monks.jpg", objectPosition: "50% 18%", caption: "Young monks of Ngagdra Dorji Choegar." }}
       />
+      <AboutNav current="/about" />
 
       <section className="section" id="the-institute" aria-labelledby="institute-title">
         <div className="container rail">
@@ -40,8 +40,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <Bleed images={[{ src: "/media/education/ngagdra-monks.jpg", alt: "Young monks of Ngagdra Dorji Choegar standing together in ceremonial scarves", objectPosition: "50% 6%" }]} caption="Young monks of Ngagdra Dorji Choegar." />
 
       <section className="section section--band">
         <div className="container grid feature">

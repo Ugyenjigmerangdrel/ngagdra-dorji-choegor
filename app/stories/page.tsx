@@ -7,6 +7,7 @@ import { PendingList, SectionHead, Stats, Steps, Teaser, TextLink } from "@/comp
 import { NextSteps } from "@/components/NextSteps";
 import { PageHeader } from "@/components/PageHeader";
 import { StoryIndex, StoryIndexFallback } from "@/components/StoryIndex";
+import { getCmsStories } from "@/lib/cms";
 import { pageMetadata } from "@/lib/seo";
 import {
   featuredStory,
@@ -25,7 +26,12 @@ import {
 
 export const metadata = pageMetadata("Stories", storiesIntro.intro[0], "/stories");
 
-export default function StoriesPage() {
+// Re-rendered every minute so stories published from the studio appear.
+export const revalidate = 60;
+
+export default async function StoriesPage() {
+  // Stories published from the studio lead the index; the stories from the content documents follow.
+  const stories = [...(await getCmsStories()).map(({ story }) => story), ...latestStories];
   return (
     <>
       <PageHeader
@@ -34,7 +40,7 @@ export default function StoriesPage() {
         lead={storiesIntro.intro}
         crumbs={[{ name: "Stories", path: "/stories" }]}
         actions={<a className="button" href={storiesIntro.action.href}>{storiesIntro.action.label}<Arrow direction="down" /></a>}
-        image={{ src: "/media/community/public-blessing.jpg", alt: "H.E. Gyeltshen Trulku Rinpoche moving through a seated crowd during a public blessing", caption: "Rinpoche among the community during a public blessing.", objectPosition: "43% 45%", priority: true, sizes: "(max-width: 860px) calc(100vw - 40px), 40vw", aspect: "4 / 3" }}
+        cover={{ src: "/media/community/public-blessing.jpg", objectPosition: "43% 45%", caption: "Rinpoche among the community during a public blessing." }}
       />
 
       <section className="section" aria-labelledby="featured-title">
@@ -162,8 +168,8 @@ export default function StoriesPage() {
           <div className="section-head section-head--wide">
             <h2 id="latest-title">Latest stories</h2>
           </div>
-          <Suspense fallback={<StoryIndexFallback stories={latestStories} categories={storyCategories} />}>
-            <StoryIndex stories={latestStories} categories={storyCategories} />
+          <Suspense fallback={<StoryIndexFallback stories={stories} categories={storyCategories} />}>
+            <StoryIndex stories={stories} categories={storyCategories} />
           </Suspense>
         </div>
       </section>

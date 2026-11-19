@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Newsreader } from "next/font/google";
+import { Alegreya, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -8,7 +8,8 @@ import { site } from "@/lib/site";
 import { jsonLd } from "@/lib/seo";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const newsreader = Newsreader({ subsets: ["latin"], variable: "--font-serif", display: "swap" });
+// Headings are set in Alegreya, the serif of the reference the client chose (yoeja.com), with Georgia as its fallback.
+const alegreya = Alegreya({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-serif", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -51,7 +52,7 @@ const organization = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${newsreader.variable}`}>
+    <html lang="en" className={`${inter.variable} ${alegreya.variable}`}>
       <body>
         <a className="skip-link" href="#main">Skip to content</a>
         <Header />

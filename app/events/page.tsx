@@ -4,13 +4,14 @@ import { Chronicle } from "@/components/Chronicle";
 import { Bleed } from "@/components/Bleed";
 import { NextSteps } from "@/components/NextSteps";
 import { PageHeader } from "@/components/PageHeader";
+import { getCmsEvents } from "@/lib/cms";
 import { eventStatus, eventsIntro, featuredEvent, pastEventsIntro, recentEvents } from "@/lib/events";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata("Events", eventsIntro.intro[0], "/events");
 
-// Re-render daily so event status labels stay current.
-export const revalidate = 86400;
+// Re-rendered every minute so events published from the studio appear, and status labels stay current.
+export const revalidate = 60;
 
 const gallery = [
   { src: "/media/events/public-practice-congregation-side.jpg", alt: "A gathered community seated beneath ceremonial canopies", objectPosition: "50% 50%" },
@@ -18,7 +19,10 @@ const gallery = [
   { src: "/media/events/ceremonial-offering-procession.jpg", alt: "Practitioners carrying sacred objects and white ceremonial scarves", objectPosition: "45% 50%" },
 ];
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  // Events published from the studio sit with the recent events, in date order.
+  const published = (await getCmsEvents()).map(({ record }) => record);
+  const recent = [...recentEvents, ...published].sort((a, b) => b.date.localeCompare(a.date));
   return (
     <>
       <PageHeader
@@ -26,6 +30,7 @@ export default function EventsPage() {
         title={eventsIntro.title}
         lead={eventsIntro.intro}
         crumbs={[{ name: "Events", path: "/events" }]}
+        cover={{ src: "/media/events/public-practice-congregation-front.jpg", objectPosition: "50% 72%" }}
         aside={
           <nav aria-label="On this page">
             <ul className="page-index">
@@ -61,13 +66,13 @@ export default function EventsPage() {
             <h2 id="recent-title">Recent events</h2>
           </div>
           <ol className="rail__body event-list">
-            {recentEvents.map((event) => (
+            {recent.map((event) => (
               <li key={event.slug}>
                 <Link href={`/events/${event.slug}`}>
                   <time dateTime={event.date}>{event.dateLabel}</time>
                   <span className="event-list__label">{event.label}</span>
                   <strong>{event.title}</strong>
-                  <span className="event-list__text">{event.summary[0]}</span>
+                  {event.summary[0] ? <span className="event-list__text">{event.summary[0]}</span> : null}
                   <span className="cue">View event<Arrow /></span>
                 </Link>
               </li>

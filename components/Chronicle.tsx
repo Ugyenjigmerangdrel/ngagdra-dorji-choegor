@@ -1,6 +1,7 @@
 import { Arrow } from "@/components/Arrow";
 import Link from "next/link";
 import { StoryBlocks } from "@/components/Editorial";
+import { YearRail } from "@/components/YearRail";
 import { archiveEvents, chronicle, eventForEntry, type ChronicleEntry } from "@/lib/events";
 
 const yearId = (year: string) => `year-${year}`;
@@ -38,9 +39,7 @@ function Entry({ entry, year }: { entry: ChronicleEntry; year: string }) {
 export function Chronicle() {
   return (
     <div className="chronicle">
-      <nav className="chronicle__years" aria-label="Jump to a year">
-        {chronicle.map((group) => <a key={group.year} href={`#${yearId(group.year)}`}>{group.year.replace("-", "–")}</a>)}
-      </nav>
+      <YearRail label="Jump to a year" items={chronicle.map((group) => ({ id: yearId(group.year), label: group.year.replace("-", "–") }))} />
       {chronicle.map((group) => (
         <section className="chronicle__year" id={yearId(group.year)} key={group.year} aria-labelledby={`${yearId(group.year)}-title`}>
           <h3 id={`${yearId(group.year)}-title`}>{group.year.replace("-", "–")}</h3>

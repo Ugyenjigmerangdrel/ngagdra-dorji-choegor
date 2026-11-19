@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Closer } from "@/components/Closer";
 import { StoryBlocks, TextLink } from "@/components/Editorial";
 import { PageHeader } from "@/components/PageHeader";
 import { centres, districtId, getCentre } from "@/lib/centres";
@@ -69,12 +69,14 @@ export default async function CentrePage({ params }: { params: Promise<{ slug: s
         </div>
       </section>
 
-      <nav className="container pager-wrap" aria-label="More centres">
-        <div className="pager">
-          {previous ? <Link href={`/centres/${previous.slug}`}><span>Previous centre</span><strong>{previous.name}</strong></Link> : <Link href="/centres"><span>Back to</span><strong>All centres</strong></Link>}
-          {next ? <Link href={`/centres/${next.slug}`}><span>Next centre</span><strong>{next.name}</strong></Link> : <Link href="/centres"><span>Back to</span><strong>All centres</strong></Link>}
-        </div>
-      </nav>
+      <Closer
+        ariaLabel="More centres"
+        href={next ? `/centres/${next.slug}` : "/centres"}
+        label={next ? "Next centre" : "Back to"}
+        title={next ? next.name : "All centres"}
+        cta="Explore centre"
+        back={previous ? { href: `/centres/${previous.slug}`, label: "Previous centre", title: previous.name } : undefined}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(place) }} />
     </>
   );

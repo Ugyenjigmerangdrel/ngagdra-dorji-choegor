@@ -20,8 +20,9 @@ import { animate, inView } from "motion";
 
 /** Elements that animate as a unit even when tall: never split into inline children. */
 const ATOMIC = "p, li, figure, blockquote, dl, details, h1, h2, h3, h4, .teaser, .bleed, .featured-event, .pending, .stats, .steps, .pillars, .requires";
-/** Elements with their own motion, or that should never be hidden. */
-const SKIP = "script, style, .network, .subnav, .crumbs, .page-header";
+/** Elements with their own motion, or that should never be hidden. The stories index sits in a Suspense
+    boundary that hydrates after this effect runs, so styling it here would break its hydration. */
+const SKIP = "script, style, .network, .subnav, .crumbs, .page-header, .home-hero, .story-index";
 
 function collectRevealTargets(element: HTMLElement, limit: number, out: HTMLElement[]) {
   if (element.matches(SKIP)) return;

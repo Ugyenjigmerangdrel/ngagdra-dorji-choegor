@@ -1,7 +1,6 @@
 import { Arrow } from "@/components/Arrow";
 import Link from "next/link";
 import { SectionHead, TextLink } from "@/components/Editorial";
-import { Bleed } from "@/components/Bleed";
 import { NextSteps } from "@/components/NextSteps";
 import { PageHeader } from "@/components/PageHeader";
 import { centres, districtId, districts } from "@/lib/centres";
@@ -26,10 +25,9 @@ export default function CentresPage() {
           "Across eastern Bhutan, retreat centres and places of practice carry connections to teachers, practitioners and communities that have sustained the tradition over generations. Some grew from the meditation places of earlier masters. Others were restored or established when communities sought to revive places of practice. Together, they form a network of living spaces where practitioners can undertake periods of dedicated retreat and meditation.",
         ]}
         crumbs={[{ name: "Centres", path: "/centres" }]}
+        cover={{ src: "/media/centres/retreat-centres.jpg", objectPosition: "50% 48%", caption: "Retreat houses on a forested hillside in eastern Bhutan." }}
         actions={<a className="button" href="#directory">Explore the retreat centres<Arrow direction="down" /></a>}
       />
-
-      <Bleed priority images={[{ src: "/media/centres/retreat-centres.jpg", alt: "Retreat houses connected by paths on a forested hillside in eastern Bhutan", objectPosition: "50% 48%" }]} caption="Retreat houses on a forested hillside in eastern Bhutan." />
 
       <section className="section section--brand" aria-labelledby="hub-title">
         <div className="container rail">

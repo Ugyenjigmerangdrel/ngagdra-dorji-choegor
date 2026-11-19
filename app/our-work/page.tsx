@@ -1,5 +1,4 @@
 import { Arrow } from "@/components/Arrow";
-import { Bleed } from "@/components/Bleed";
 import { EditorialImage } from "@/components/EditorialImage";
 import { Steps } from "@/components/Editorial";
 import { NextSteps } from "@/components/NextSteps";
@@ -16,6 +15,7 @@ export default function OurWorkPage() {
         title={ourWork.title}
         lead={ourWork.intro}
         crumbs={[{ name: "Our work", path: "/our-work" }]}
+        cover={{ src: "/media/centres/retreat-centres.jpg", objectPosition: "50% 48%" }}
         aside={
           <nav aria-label="Areas of work">
             <ul className="page-index">
@@ -41,8 +41,6 @@ export default function OurWorkPage() {
           </ol>
         </div>
       </section>
-
-      <Bleed images={[{ src: "/media/centres/retreat-centres.jpg", alt: "Retreat houses connected by paths on a forested hillside in eastern Bhutan", objectPosition: "50% 48%" }]} caption="Retreat houses on a forested hillside in eastern Bhutan." />
 
       <section className="section section--brand" aria-labelledby="journey-title">
         <div className="container">

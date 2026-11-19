@@ -9,7 +9,6 @@ export const metadata = pageMetadata("Lineage and history", lineage.intro, "/abo
 export default function LineagePage() {
   return (
     <>
-      <AboutNav current="/about/history" />
       <PageHeader
         eyebrow={lineage.eyebrow}
         kicker={lineage.kicker}
@@ -18,6 +17,7 @@ export default function LineagePage() {
         crumbs={[{ name: "About", path: "/about" }, { name: "Lineage and history", path: "/about/history" }]}
         image={{ src: "/media/rinpoche/early-group-archive.jpg", alt: "Archival group portrait of Buddhist teachers and young practitioners", caption: "An archival group photograph of teachers and practitioners.", priority: true, sizes: "(max-width: 860px) calc(100vw - 40px), 34vw", aspect: "4 / 5", objectFit: "contain" }}
       />
+      <AboutNav current="/about/history" />
 
       <section className="section" aria-label="The lineage">
         <div className="container rail">

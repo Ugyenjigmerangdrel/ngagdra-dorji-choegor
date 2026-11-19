@@ -2,7 +2,6 @@ import { Arrow } from "@/components/Arrow";
 import Link from "next/link";
 import { SectionHead } from "@/components/Editorial";
 import { PageHeader } from "@/components/PageHeader";
-import { Bleed } from "@/components/Bleed";
 import { NextSteps } from "@/components/NextSteps";
 import { pageMetadata } from "@/lib/seo";
 import { contactPending } from "@/lib/site";
@@ -30,8 +29,7 @@ export default function VisitPage() {
             <div><dt>Region</dt><dd>Eastern Bhutan</dd></div>
           </dl>
         }
-        image={{ src: "/media/institution/ngagdra-kurizampa-drawing-green.png", alt: "Drawing of Ngagdra Dorji Choegar above the Kurichu River at Kurizampa", caption: "Ngagdra Dorji Choegar above the Kurichu River at Kurizampa, Mongar.", priority: true, sizes: "(max-width: 1280px) calc(100vw - 40px), 1280px", aspect: "16 / 7", objectFit: "contain", frame: false }}
-        imageLayout="wide"
+        cover={{ src: "/media/community/public-blessing.jpg", objectPosition: "43% 40%" }}
       />
       <section className="section" id="visitor-information" aria-labelledby="visit-title">
         <div className="container rail">
@@ -52,7 +50,6 @@ export default function VisitPage() {
           <p className="rail__body pending-note">{contactPending}</p>
         </div>
       </section>
-      <Bleed images={[{ src: "/media/community/public-blessing.jpg", alt: "H.E. Gyeltshen Trulku Rinpoche moving through a seated crowd during a public blessing", objectPosition: "43% 40%" }]} caption="Rinpoche among the community during a public blessing." />
 
       <section className="section section--brand">
         <div className="container rail">

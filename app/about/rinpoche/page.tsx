@@ -19,7 +19,6 @@ export default function RinpochePage() {
   const person = { "@context": "https://schema.org", "@type": "Person", name: rinpoche.name, alternateName: "Drub-La Kuenzang Tenpai Gyeltshen", birthDate: "1953", birthPlace: "Tashi Yangtse, Bhutan", description: rinpoche.intro, affiliation: { "@id": `${site.url}/#organization` }, url: `${site.url}/about/rinpoche` };
   return (
     <>
-      <AboutNav current="/about/rinpoche" />
       <PageHeader
         eyebrow="Founder and Spiritual Head"
         title={rinpoche.name}
@@ -27,6 +26,7 @@ export default function RinpochePage() {
         crumbs={[{ name: "About", path: "/about" }, { name: "H.E. Gyeltshen Trulku Rinpoche", path: "/about/rinpoche" }]}
         image={{ src: "/media/rinpoche/portrait-ceremonial.jpg", alt: "H.E. Gyeltshen Trulku Rinpoche seated on a ceremonial throne", caption: "H.E. Gyeltshen Trulku Rinpoche.", priority: true, sizes: "(max-width: 860px) calc(100vw - 40px), 40vw", aspect: "3 / 2", objectPosition: "50% 35%" }}
       />
+      <AboutNav current="/about/rinpoche" />
       {rinpoche.sections.map((section, index) => {
         const figure = figures[section.id];
         return (

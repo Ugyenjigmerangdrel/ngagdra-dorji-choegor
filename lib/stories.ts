@@ -183,10 +183,11 @@ export const storyCategories: { label: StoryCategory; intro?: { title: string; t
   { label: "News" },
 ];
 
-export type LatestStory = { title: string; category: StoryCategory; year: string; text: string; href?: string };
+/** A published story with a photograph is shown as a photo card; one without, as a list row. */
+export type LatestStory = { title: string; category: StoryCategory; year: string; text: string; href?: string; image?: ImageRef };
 
 export const latestStories: LatestStory[] = [
-  { title: "The journey between retreats", category: "Retreat centres", year: "2026", text: "What happens when one period of retreat ends and another begins?", href: "/stories/the-journey-between-retreats" },
+  { title: "The journey between retreats", category: "Retreat centres", year: "2026", text: "What happens when one period of retreat ends and another begins?", href: "/stories/the-journey-between-retreats", image: featuredStory.image },
   { title: "The people behind the practice", category: "People", year: "2026", text: "The practitioners, teachers and communities who sustain a tradition through years of dedication." },
   { title: "Where the teachings take root", category: "Retreat centres", year: "2026", text: "The places across eastern Bhutan where study, meditation and retreat continue." },
   { title: "Before there was a place", category: "Heritage", year: "2026", text: "The journey from travelling teachings to the establishment of Ngagdra Dorji Choegar." },
@@ -196,7 +197,14 @@ export const latestStories: LatestStory[] = [
 
 /* Articles -------------------------------------------------------------- */
 
-export type ArticleBlock = string | { quote: string } | { link: { label: string; href: string } };
+export type ArticleBlock =
+  | string
+  | { quote: string }
+  | { link: { label: string; href: string } }
+  /** A photograph set wider than the text column. */
+  | { figure: ImageRef }
+  /** Two portrait photographs side by side. */
+  | { pair: [ImageRef, ImageRef] };
 
 export type Article = {
   slug: string;
@@ -206,7 +214,8 @@ export type Article = {
   dek: string;
   intro: string;
   image: ImageRef;
-  sections: { heading: string; body: ArticleBlock[] }[];
+  /** `ornament` sets the emblem divider above the section. */
+  sections: { heading: string; ornament?: boolean; body: ArticleBlock[] }[];
   related: Teaser[];
   relatedCentre: { slug: string; name: string; text: string };
   published: string;
@@ -233,6 +242,7 @@ export const articles: Article[] = [
       },
       {
         heading: "From one retreat to another",
+        ornament: true,
         body: [
           "A similar journey unfolded among seven monks who had completed an initial three-year retreat at Kangpar before undertaking another three-year period of Six Yogas of Nāropa practice at Larjab.",
           "In March 2026, following the completion of their retreat at Larjab, they gathered at Ngagdra and offered Ku-Sung-Thukten Mendrel.",
@@ -245,6 +255,7 @@ export const articles: Article[] = [
         body: [
           "Long-term practice depends on places where practitioners can remain, study and practise over extended periods.",
           "Across the Ngagdra network, retreat centres provide different settings for this journey. Some have grown from older monasteries and places of practice, while others have been developed specifically to support retreat.",
+          { figure: { src: "/media/centres/retreat-centres.jpg", alt: "Retreat houses connected by paths on a forested hillside in eastern Bhutan", caption: "Retreat houses on a forested hillside in eastern Bhutan.", objectPosition: "50% 48%" } },
           "Together, these places form a wider landscape of practice across eastern Bhutan.",
           { link: { label: "Explore the centres", href: "/centres" } },
         ],
@@ -256,10 +267,17 @@ export const articles: Article[] = [
           "It is a place shaped by the people who practise there and by those who support the conditions that make practice possible.",
           "Teachers guide and transmit the teachings. Practitioners dedicate years to retreat. Attendants and supporters help sustain the everyday needs of the community.",
           "Every retreat therefore becomes part of a larger story—one carried by people, places and generations.",
+          {
+            pair: [
+              { src: "/media/rinpoche/with-retreat-practitioners.jpg", alt: "H.E. Gyeltshen Trulku Rinpoche seated before a shrine with practitioners standing beside him", caption: "H.E. Gyeltshen Trulku Rinpoche with practitioners." },
+              { src: "/media/education/ngagdra-monks.jpg", alt: "Young monks of Ngagdra Dorji Choegar standing together in ceremonial scarves", caption: "Young monks of Ngagdra Dorji Choegar.", objectPosition: "50% 20%" },
+            ],
+          },
         ],
       },
       {
         heading: "What comes next?",
+        ornament: true,
         body: [
           "For some practitioners, completing a retreat leads directly into another period of intensive practice.",
           "For others, the next stage may involve teaching, supporting a centre or serving the wider community.",

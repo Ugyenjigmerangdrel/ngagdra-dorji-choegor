@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Arrow } from "@/components/Arrow";
@@ -18,7 +19,8 @@ function StoryIndexView({ stories, categories, active, onChoose }: Props & { act
   // Themes with no stories yet keep their introduction, shown with the stories in preparation.
   const emptyThemes = categories.filter((category) => count(category.label) === 0 && category.intro);
   const shown = active === "All" ? stories : stories.filter((story) => story.category === active);
-  const published = shown.filter((story) => story.href);
+  const cards = shown.filter((story) => story.href && story.image);
+  const published = shown.filter((story) => story.href && !story.image);
   const pending = shown.filter((story) => !story.href);
   const intro = categories.find((category) => category.label === active)?.intro;
 
@@ -38,6 +40,29 @@ function StoryIndexView({ stories, categories, active, onChoose }: Props & { act
         </div>
       ) : null}
       <div aria-live="polite">
+        {cards.length ? (
+          <ul className="story-cards">
+            {cards.map((story) => (
+              <li key={story.title}>
+                <Link href={story.href!} className="story-card">
+                  <Image quality={90}
+                    src={story.image!.src}
+                    alt=""
+                    fill
+                    sizes={cards.length === 1 ? "(max-width: 860px) calc(100vw - 40px), 820px" : "(max-width: 620px) 190vw, (max-width: 980px) 95vw, 760px"}
+                    style={{ objectFit: "cover", objectPosition: story.image!.objectPosition ?? "50% 50%" }}
+                  />
+                  <span className="story-card__copy">
+                    <span className="story-index__meta">{story.category} · {story.year}</span>
+                    <strong>{story.title}</strong>
+                    <span className="story-card__text">{story.text}</span>
+                    <span className="cue">Read the story<Arrow /></span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
         {published.length ? (
           <ul className="story-index__list">
             {published.map((story) => (

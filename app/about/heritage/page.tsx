@@ -16,7 +16,6 @@ const figures: Record<string, { src: string; alt: string; caption: string; objec
 export default function HeritagePage() {
   return (
     <>
-      <AboutNav current="/about/heritage" />
       <PageHeader
         eyebrow={heritage.eyebrow}
         title={heritage.title}
@@ -31,6 +30,7 @@ export default function HeritagePage() {
           </nav>
         }
       />
+      <AboutNav current="/about/heritage" />
       {heritage.sections.map((section, index) => {
         const figure = figures[section.id];
         return (

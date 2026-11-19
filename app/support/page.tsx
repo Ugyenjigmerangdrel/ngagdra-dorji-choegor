@@ -1,6 +1,7 @@
+import { fillSizes } from "@/lib/images";
 import { Arrow } from "@/components/Arrow";
+import Image from "next/image";
 import Link from "next/link";
-import { Bleed } from "@/components/Bleed";
 import { SectionHead, Stats, TextLink } from "@/components/Editorial";
 import { PageHeader } from "@/components/PageHeader";
 import { RetreatIcon } from "@/components/RetreatIcon";
@@ -19,6 +20,7 @@ export default function SupportPage() {
         title={support.title}
         lead={support.lead}
         crumbs={[{ name: "Support", path: "/support" }]}
+        cover={{ src: "/media/centres/gawa-mani-chorten-construction.jpg", objectPosition: "50% 55%", caption: "Communal work during construction of the Gawa Mani chorten." }}
         aside={
           <nav aria-label="On this page">
             <ul className="page-index">
@@ -43,8 +45,6 @@ export default function SupportPage() {
           </div>
         </div>
       </section>
-
-      <Bleed images={[{ src: "/media/centres/gawa-mani-chorten-construction.jpg", alt: "Community members working around a chorten under construction on a hillside", objectPosition: "50% 55%" }]} caption="Communal work during construction of the Gawa Mani chorten." />
 
       <section className="section section--band" id="what-a-retreat-requires" aria-labelledby="requires-title">
         <div className="container">
@@ -85,7 +85,8 @@ export default function SupportPage() {
         </div>
       </section>
 
-      <section className="closing" id="how-to-support" aria-labelledby="how-title">
+      <section className="closing closing--photo" id="how-to-support" aria-labelledby="how-title">
+        <Image quality={90} src="/media/events/ceremonial-offering-procession.jpg" alt="" fill sizes={fillSizes} style={{ objectFit: "cover", objectPosition: "45% 50%" }} />
         <div className="container grid closing__grid">
           <div className="closing__copy">
             <h2 id="how-title">{support.how.title}</h2>
@@ -93,6 +94,8 @@ export default function SupportPage() {
           </div>
           <div className="closing__actions">
             <p className="pending-note pending-note--light">{contactPending}</p>
+            <TextLink href="/donate" className="text-link--light">Donate</TextLink>
+            <TextLink href="/membership" className="text-link--light">Become a member of Ngagdra Dokram</TextLink>
             <Link className="button button--light" href="/centres">Explore the centres</Link>
           </div>
         </div>

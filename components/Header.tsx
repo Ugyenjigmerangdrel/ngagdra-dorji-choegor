@@ -3,20 +3,36 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { primaryNav } from "@/lib/site";
+import { navActions, primaryNav } from "@/lib/site";
 import { Mark } from "@/components/Mark";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // Which submenu is open (by parent href), if any.
+  const [group, setGroup] = useState<string | null>(null);
   const pathname = usePathname();
+  const close = () => {
+    setOpen(false);
+    setGroup(null);
+  };
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      setGroup(null);
+    };
+    // A click anywhere outside an open submenu closes it.
+    const closeOnOutside = (event: PointerEvent) => {
+      if (!(event.target instanceof Element) || !event.target.closest(".nav-group")) setGroup(null);
     };
     window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
+    window.addEventListener("pointerdown", closeOnOutside);
+    return () => {
+      window.removeEventListener("keydown", closeOnEscape);
+      window.removeEventListener("pointerdown", closeOnOutside);
+    };
   }, []);
 
   // While the mobile menu is open, the page behind it does not scroll.
@@ -49,7 +65,7 @@ export function Header() {
   return (
     <header className={`site-header${scrolled ? " site-header--scrolled" : ""}`}>
       <div className="container header-inner">
-        <Link className="brand-lockup" href="/" aria-label="Ngagdra Dorji Choegar home" onClick={() => setOpen(false)}>
+        <Link className="brand-lockup" href="/" aria-label="Ngagdra Dorji Choegar home" onClick={close}>
           <Mark compact />
           <span className="brand-name-long">NGAGDRA DORJI CHOEGAR</span>
           <span className="brand-name-short">NGAGDRA</span>
@@ -61,9 +77,33 @@ export function Header() {
         <nav id="primary-navigation" className={open ? "nav nav--open" : "nav"} aria-label="Primary navigation">
           {primaryNav.map((item) => {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
-            return <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} onClick={() => setOpen(false)}>{item.label}</Link>;
+            if (!item.children) {
+              return <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} onClick={close}>{item.label}</Link>;
+            }
+            const expanded = group === item.href;
+            const within = active || item.children.some((child) => pathname === child.href);
+            const id = `nav-group-${item.href.slice(1)}`;
+            return (
+              <div key={item.href} className={`nav-group${expanded ? " nav-group--open" : ""}`}>
+                <button type="button" className="nav-group__toggle" aria-expanded={expanded} aria-controls={id} data-current={within ? "true" : undefined} onClick={() => setGroup(expanded ? null : item.href)}>
+                  {item.label}
+                  <span className="nav-group__caret" aria-hidden="true" />
+                </button>
+                <ul id={id} className="nav-group__menu">
+                  {item.children.map((child) => (
+                    <li key={child.href}>
+                      <Link href={child.href} aria-current={pathname === child.href ? "page" : undefined} onClick={close}>{child.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
           })}
-          <Link className="nav-support" href="/support" aria-current={pathname === "/support" ? "page" : undefined} onClick={() => setOpen(false)}>Support</Link>
+          <span className="nav-actions">
+            {navActions.map((item, index) => (
+              <Link key={item.href} className={index === navActions.length - 1 ? "nav-support nav-support--primary" : "nav-support"} href={item.href} aria-current={pathname === item.href || pathname.startsWith(`${item.href}/`) ? "page" : undefined} onClick={close}>{item.label}</Link>
+            ))}
+          </span>
         </nav>
       </div>
     </header>
