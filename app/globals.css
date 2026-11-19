@@ -671,7 +671,9 @@ details summary:hover { text-decoration-color: var(--brand); }
 /* The header switches to the menu button once the links and both buttons no longer fit on one line. */
 @media (max-width: 1140px) {
   .menu-button { display: inline-flex; }
-  .nav { position: fixed; inset: var(--header-h) 0 0 0; overflow-y: auto; overscroll-behavior: contain; justify-content: flex-start; display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 12px var(--gutter) 28px; background: var(--paper); border-bottom: 1px solid var(--rule); opacity: 0; visibility: hidden; translate: 0 -10px; transition: opacity 220ms ease, translate 320ms var(--ease-out), visibility 0s linear 320ms; }
+  /* The header's backdrop-filter makes it the containing block for this fixed panel, so the
+     height is set explicitly: `bottom: 0` would resolve against the header and collapse it. */
+  .nav { position: fixed; inset: var(--header-h) 0 auto 0; height: calc(100vh - var(--header-h)); height: calc(100dvh - var(--header-h)); overflow-y: auto; overscroll-behavior: contain; justify-content: flex-start; display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 12px var(--gutter) 28px; background: var(--paper); border-bottom: 1px solid var(--rule); opacity: 0; visibility: hidden; translate: 0 -10px; transition: opacity 220ms ease, translate 320ms var(--ease-out), visibility 0s linear 320ms; }
   .nav--open { opacity: 1; visibility: visible; translate: 0 0; transition-delay: 0s; }
   .nav > a { padding: 12px 0; font-size: 18px; border-bottom: 1px solid var(--rule); }
   .nav > a::after { display: none; }
