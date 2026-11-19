@@ -13,7 +13,7 @@ export const contactPending = "Contact details for the institute are being confi
 
 export const primaryNav = [
   { href: "/about", label: "About" },
-  { href: "/our-work", label: "Our Work" },
+  { href: "/our-work", label: "Our work" },
   { href: "/centres", label: "Centres" },
   { href: "/events", label: "Events" },
   { href: "/stories", label: "Stories" },

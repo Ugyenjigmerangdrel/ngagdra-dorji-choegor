@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { heritage } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata = pageMetadata("Our Heritage", heritage.intro, "/about/heritage");
+export const metadata = pageMetadata("Our heritage", heritage.intro, "/about/heritage");
 
 const figures: Record<string, { src: string; alt: string; caption: string; objectPosition?: string }> = {
   "teachings-and-texts": { src: "/media/heritage/ceremonial-proceedings.jpg", alt: "Monks in ceremonial dress playing ritual instruments in procession", caption: "Ceremonial proceedings within the living practice tradition.", objectPosition: "60% 45%" },
@@ -21,7 +21,7 @@ export default function HeritagePage() {
         eyebrow={heritage.eyebrow}
         title={heritage.title}
         lead={heritage.intro}
-        crumbs={[{ name: "About", path: "/about" }, { name: "Our Heritage", path: "/about/heritage" }]}
+        crumbs={[{ name: "About", path: "/about" }, { name: "Our heritage", path: "/about/heritage" }]}
         aside={
           <nav aria-label="On this page">
             <p className="eyebrow">On this page</p>

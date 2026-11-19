@@ -19,7 +19,7 @@ export default function CentresPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Our Network"
+        eyebrow="Our network"
         title="Beyond the walls of Ngagdra."
         lead={[
           "The story of Ngagdra is not contained within a single building.",

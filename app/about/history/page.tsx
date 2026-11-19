@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { lineage } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata = pageMetadata("Lineage and History", lineage.intro, "/about/history");
+export const metadata = pageMetadata("Lineage and history", lineage.intro, "/about/history");
 
 export default function LineagePage() {
   return (
@@ -15,7 +15,7 @@ export default function LineagePage() {
         kicker={lineage.kicker}
         title={lineage.title}
         lead={lineage.intro}
-        crumbs={[{ name: "About", path: "/about" }, { name: "Lineage and History", path: "/about/history" }]}
+        crumbs={[{ name: "About", path: "/about" }, { name: "Lineage and history", path: "/about/history" }]}
         image={{ src: "/media/rinpoche/early-group-archive.jpg", alt: "Archival group portrait of Buddhist teachers and young practitioners", caption: "An archival group photograph of teachers and practitioners.", priority: true, sizes: "(max-width: 860px) calc(100vw - 40px), 34vw", aspect: "4 / 5", objectFit: "contain" }}
       />
 

@@ -22,7 +22,7 @@ export const home = {
       "Ngagdra Dorji Choegar is a centre for the study, practice and preservation of Vajrayana teachings in Bhutan. Rooted in a lineage of masters and practitioners, Ngagdra brings together learning, meditation and retreat — helping a living tradition continue through practice and transmission.",
     actions: [
       { label: "Discover Ngagdra", href: "/about" },
-      { label: "Explore Our Work", href: "/our-work" },
+      { label: "Explore our work", href: "/our-work" },
     ],
   },
   introduction: {
@@ -33,7 +33,7 @@ export const home = {
       "Ngagdra Dorji Choegar, based in Kurizampa, Mongar, is part of this continuing tradition. Its work brings together Buddhist study, meditation, retreat and the preservation of teachings and practices rooted in the lineage of great masters.",
       "From the institute to retreat centres across eastern Bhutan, Ngagdra is part of a wider effort to create places where teachings can be learned, practiced and lived.",
     ],
-    action: { label: "Discover the Institute", href: "/about#the-institute" },
+    action: { label: "Discover the institute", href: "/about#the-institute" },
   },
   pillars: [
     { title: "Study", body: "Learning the teachings, texts and practices of the Vajrayana tradition." },
@@ -46,7 +46,7 @@ export const home = {
 /* The network at a glance ----------------------------------------------- */
 
 export const networkAtAGlance = {
-  eyebrow: "The Ngagdra Network at a Glance",
+  eyebrow: "The Ngagdra network at a glance",
   title: "117 people are practising.",
   intro: "Across ten retreat centres in eastern Bhutan, practitioners have created communities dedicated to meditation and sustained practice.",
   stats: [
@@ -54,7 +54,7 @@ export const networkAtAGlance = {
     { value: "117", label: "practitioners" },
     { value: "5", label: "eastern Dzongkhags" },
   ],
-  peopleTitle: "The People Behind the Retreats",
+  peopleTitle: "The people behind the retreats",
   peopleNote: "Each retreat centre provides a place where practitioners can withdraw from ordinary life and dedicate themselves to sustained meditation and practice.",
   action: { label: "Explore the centres", href: "/centres" },
 };
@@ -70,11 +70,11 @@ export const about = {
     { label: "Who we are", href: "/about#the-institute" },
     { label: "Our lineage", href: "/about/history" },
     { label: "Our vision", href: "/about/heritage" },
-    { label: "Our founder / spiritual head", href: "/about/rinpoche" },
+    { label: "Founder and Spiritual Head", href: "/about/rinpoche" },
     { label: "Ngagdra today", href: "/about/milestones#today" },
   ],
   institute: {
-    title: "The Institute",
+    title: "The institute",
     paragraphs: [
       "Before Ngagdra Dorji Choegar existed, monks preparing for retreat had nowhere fixed to turn. Each year for eighteen years, fifteen to twenty-five of them would gather at various locations for a few months at a time to receive empowerments and transmissions from Rinpoche, a demanding, unsettled way to prepare for a life of meditation.",
       "Ngagdra Dorji Choegar was founded on 26 April 2007 to solve that problem: a single, permanent home for the teachings, empowerments, and training that practitioners need before entering retreat. Built above the Kurichu River near the Kurizampa bridge in Mongar, it is today the only Ngagdra institute in the world reviving a tradition first established over 400 years ago in Tibet by Kuenkhen Pema Karpo.",
@@ -92,12 +92,12 @@ export const rinpoche = {
   sections: [
     {
       id: "early-life",
-      title: "Early Life and Training",
+      title: "Early life and training",
       body: "Rinpoche was born in 1953 in Tashi Yangtse, Eastern Bhutan, and lost both parents while still a young child, growing up amid hardship and uncertainty. At age nine, he was recognized by Drubwang Lama Sonam Zangpo (1888–1982) as the reincarnation of Thrulzhig Gyeltshen Marpo (1874–1950), a great Dzogchen master and direct disciple of Togden Shakya Shri, and was formally enthroned in Lhuentse. At twelve, together with Trulku Jigme Choeda — now His Holiness the Je Khenpo of Bhutan — he was introduced to H.E. the First Drukpa Thuksey Rinpoche at Druk Thupten Sangag Choling monastery in Darjeeling, where he trained in Sutra and Mantra for ten years, receiving extensive teachings from Thuksey Rinpoche and Khenpo Noryang. At nineteen, he was appointed Dorji Lopen there by Thuksey Rinpoche himself.",
     },
     {
       id: "teaching-and-retreat",
-      title: "Teaching and Retreat Tradition",
+      title: "Teaching and retreat tradition",
       body: "In Darjeeling, Rinpoche received the complete Kangyur oral transmission and Rinchen Tordzoe from H.H. Dudjom Jigdrel Yeshi Dorji, and complete Dzogchen teachings from the 68th Je Khenpo, His Holiness Thrizur Tenzin Dendrup, becoming one of his Precious Heart Sons. He also received Togden Shakya Shri's collected teachings from Drubwang Adzin Rinpoche. Returning to Bhutan at twenty-three, he received Mahamudra, the Six Yogas of Naropa, and empowerments in both the Drukpa Kagyud and Nyingma traditions from his root guru, Drubwang Lama Sonam Zangpo, before entering strict retreat at Hongtsho Goenpa. There he mastered Chagchen Choedruk and Khandro Nyengyue, the whispered lineage of the dakinis among other teachings Sonam Zangpo had received directly from Togden Shakya Shri. In 1982, he was appointed the first Drubpoen of Bhutan's first official retreat centre, at Phajoding, established for the long life of the Fourth Druk Gyalpo.",
     },
     {
@@ -108,7 +108,7 @@ export const rinpoche = {
     {
       id: "ngagdra",
       title: "Ngagdra Dorji Choegar",
-      body: "To provide monks with a single place to complete their Vajrayana training before retreat, Rinpoche established Ngagdra Dorji Choegar in Kurizampa, Mongar — the only institute in the world reviving the Ngagdra tradition first founded over 400 years ago in Tibet by Kuenkhen Pema Karpo. The institute houses a 21-foot statue of Hey Vajra, the largest of its kind in Bhutan, and provides training in mandala drawing, astrology, and Vajrayana philosophy. Rinpoche has also introduced a three-year Six Yogas of Naropa practice for senior nuns following their nine-year retreats, and at the special command of His Majesty the King, reintroduced Togden Shakya Shri's secret mind treasure teachings and the Soenjang life-purification ritual, now held annually at the institute for the benefit of the public.",
+      body: "To provide monks with a single place to complete their Vajrayana training before retreat, Rinpoche established Ngagdra Dorji Choegar in Kurizampa, Mongar — the only institute in the world reviving the Ngagdra tradition first founded over 400 years ago in Tibet by Kuenkhen Pema Karpo. The institute houses a 21-foot statue of Hevajra, the largest of its kind in Bhutan, and provides training in mandala drawing, astrology, and Vajrayana philosophy. Rinpoche has also introduced a three-year Six Yogas of Naropa practice for senior nuns following their nine-year retreats, and at the special command of His Majesty the King, reintroduced Togden Shakya Shri's secret mind treasure teachings and the Soenjang life-purification ritual, now held annually at the institute for the benefit of the public.",
     },
   ],
 };
@@ -116,7 +116,7 @@ export const rinpoche = {
 /* Lineage and history --------------------------------------------------- */
 
 export const lineage = {
-  eyebrow: "Lineage and History",
+  eyebrow: "Lineage and history",
   kicker: "From teacher to disciple, from generation to generation.",
   title: "A lineage transmitted through practice.",
   intro:
@@ -133,7 +133,7 @@ export const lineage = {
     "When Thruelzhig Gyeltshen Marpo passed away in 1950, it was prophesied that he would return. Three years later, a child was born in Trashiyangtse; at age nine, he was recognized as that same teacher's reincarnation. Raised and trained for decades under senior masters in Bhutan and Darjeeling, that child is today's H.E. Gyeltshen Trulku Rinpoche — the living continuation of a transmission that has now passed, without interruption, through three generations.",
   ],
   researchers: {
-    title: "For Practitioners & Researchers",
+    title: "For practitioners & researchers",
     paragraphs: [
       "The lineage held at Ngagdra Dorji Choegar descends principally from Togden Shakya Shri (1853–1919) through his disciple Thruelzhig Gyeltshen Marpo (1874–1950), who received the Collate of the Heart Essence of the Great Perfection, the Jewel Essence of Great Perfection — one of only three disciples entrusted with this transmission — and was given the name Kuenzang Pema Dechen Tsel. Gyeltshen Marpo's own students included Ngagtoen Kalo, Ngagtoen Yalo, Lopoen Pema Wangchuk (his biographer), Ani Yoesel Choeden, Jigme Droelma, Yeshi Zangmo, and his consort Tenzin Pelmo — several recognized as realized practitioners in their own right. Lama Sonam Zangpo also received oral lineage cycles of the Great Perfection directly from him.",
       "In 1962, Drubwang Lama Sonam Zangpo (1888–1982) recognized the nine-year-old Kuenzang Tenpai Gyeltshen as Gyeltshen Marpo's reincarnation. Rinpoche's subsequent training under H.E. the First Drukpa Thuksey Rinpoche, H.H. Dudjom Jigdrel Yeshi Dorji, H.H. Thrizur Tenzin Dendrup (68th Je Khenpo), and Drubwang Adzin Rinpoche integrated this Nyingma Dzogchen transmission with the Drukpa Kagyud Mahamudra lineage — the dual foundation on which Ngagdra Dorji Choegar's curriculum rests today.",
@@ -144,14 +144,14 @@ export const lineage = {
 /* Heritage -------------------------------------------------------------- */
 
 export const heritage = {
-  eyebrow: "Our Heritage",
-  title: "Preserving a Living Tradition.",
+  eyebrow: "Our heritage",
+  title: "Preserving a living tradition.",
   intro:
     "Walk through Ngagdra Dorji Choegar and its retreat centres, and you'll find more than monks in meditation — you'll find teachings rescued from disappearing, art found nowhere else on earth, and a practice tradition still being carried forward, unbroken, generation after generation.",
   sections: [
     {
       id: "teachings-and-texts",
-      title: "Teachings & Texts",
+      title: "Teachings & texts",
       paragraphs: [
         "Some of the most profound teachings of the Drukpa Kagyud and Nyingma lineages nearly didn't survive. Passed down for generations by word of mouth, cycles like the Gayjor Duenpa Drogoen Tsangpa Gyare's Aspiration for the Seven Qualities of Virtuous Practice and the Guru Dewa teachings of Drubwang Shakya Shri's lineage were slipping toward extinction, with fewer and fewer people left who knew them. Rinpoche sought them out, practiced them, and wrote supplementary commentaries — including a full practice manual for Guru Dewa so they could be taught properly again. A few senior monks and nuns have since completed these teachings during an intensive seven-month retreat.",
         "At the special command of His Majesty the Druk Gyalpo, Jigme Khesar Namgyel Wangchuck, Rinpoche also reintroduced Drubwang Shakya Shri's secret mind treasure teachings, including the Drubwang Nyengyued Phowa practice and the Soenjang — a life-purification ritual believed to lighten karma, extend life, and prepare the mind for a peaceful death. It is now held every year at Ngagdra Dorji Choegar, open to the public.",
@@ -159,14 +159,14 @@ export const heritage = {
     },
     {
       id: "sacred-arts",
-      title: "Sacred Arts",
+      title: "Sacred arts",
       paragraphs: [
-        "Inside the institute stands a 21-foot statue of Hey Vajra — the largest of its kind in Bhutan, and the personal meditation deity of Marpa Lotsawa. At Togden Choeling Drubdey in Gongthung, Rinpoche built a 22-foot, three-dimensional Chakrasamvara mandala, the largest in the country. And at Khabti Goenpa hangs a wall painting of Dampa Rigja — the one hundred revered deities of the Drukpa Kagyud lineage — the only painting of its kind known to exist anywhere in the world. None of this is decoration. Every statue and mandala is built as a tool for practice: something a meditator can hold in the mind's eye, precisely and without doubt, during years of solitary retreat.",
+        "Inside the institute stands a 21-foot statue of Hevajra — the largest of its kind in Bhutan, and the personal meditation deity of Marpa Lotsawa. At Togden Choeling Drubdey in Gongthung, Rinpoche built a 22-foot, three-dimensional Chakrasamvara mandala, the largest in the country. And at Khabti Goenpa hangs a wall painting of Dampa Rigja — the one hundred revered deities of the Drukpa Kagyud lineage — the only painting of its kind known to exist anywhere in the world. None of this is decoration. Every statue and mandala is built as a tool for practice: something a meditator can hold in the mind's eye, precisely and without doubt, during years of solitary retreat.",
       ],
     },
     {
       id: "practice-traditions",
-      title: "Practice Traditions",
+      title: "Practice traditions",
       paragraphs: [
         "At the heart of it all is retreat itself — three years, six years, nine years, sometimes longer, spent largely in silence. Rinpoche has long insisted that monks and nuns walk the same path on equal footing: nuns now undertake the same nine-year meditation programs as monks, and a few senior nuns have gone on to complete twelve years in retreat, some now practicing alone in the mountains and at cremation grounds, following the ancient custom of solitary wandering meditation.",
         "It is, by any measure, one of the most disciplined and complete retreat traditions still practiced in the Himalayan region today.",
@@ -194,7 +194,7 @@ export const milestones = {
     {
       id: "2015",
       label: "2015",
-      body: "On 30 October 2015, His Holiness the 70th Je Khenpo, Trulku Jigme Choedra, formally consecrated the institute together with its newly completed Hey Vajra statue — the largest and tallest of its kind ever built. His Royal Highness Gyaltshab Jigme Dorji Wangchuck and Her Royal Highness Azhi Yeatso Lhamo attended, and the ceremony coincided with the 60th birth anniversary of His Majesty the Fourth Druk Gyalpo, Jigme Singye Wangchuck making it a nationally significant day.",
+      body: "On 30 October 2015, His Holiness the 70th Je Khenpo, Trulku Jigme Choedra, formally consecrated the institute together with its newly completed Hevajra statue — the largest and tallest of its kind ever built. His Royal Highness Gyaltshab Jigme Dorji Wangchuck and Her Royal Highness Azhi Yeatso Lhamo attended, and the ceremony coincided with the 60th birth anniversary of His Majesty the Fourth Druk Gyalpo, Jigme Singye Wangchuck making it a nationally significant day.",
       href: "/events/2015-ngagdra-consecration",
     },
     {
@@ -215,49 +215,49 @@ export const milestones = {
 export type WorkArea = { slug: string; title: string; body: string; image: ImageRef };
 
 export const ourWork = {
-  eyebrow: "Our Works",
-  title: "Education, Practice, Preservation and Service.",
+  eyebrow: "Our works",
+  title: "Education, practice, preservation and service.",
   intro:
     "Ngagdra Dorji Choegar's work happens in stages, not in isolation. A student arrives to study; that study prepares them for years of retreat; retreat produces practitioners who preserve the tradition and serve the wider community. Everything below is one connected path, not five separate programs.",
   areas: [
     {
       slug: "vajrayana-education",
-      title: "Vajrayana Education",
+      title: "Vajrayana education",
       body: "Before any student enters retreat, they spend years at the institute mastering what they'll need once they're alone with the practice. Lessons cover mandala drawing, astrology, and Vajrayana philosophy, alongside training in visualization, contemplation, and oral transmission — the full body of knowledge a practitioner needs before three, six, or nine years of solitary meditation can safely begin. Nearly two hundred monks are currently working through this curriculum.",
       image: { src: "/media/education/ngagdra-monks.jpg", alt: "Young monks of Ngagdra Dorji Choegar standing together in ceremonial scarves", objectPosition: "50% 40%" },
     },
     {
       slug: "retreat-preparation-practice",
-      title: "Retreat Preparation & Practice",
+      title: "Retreat preparation & practice",
       body: "Study and retreat aren't separate worlds — one exists to serve the other. Ngagdra Dorji Choegar was built specifically to solve a problem: for eighteen years, monks had to travel to gather teachings piecemeal before entering retreat centres scattered across Eastern Bhutan. Now, everything a student needs — empowerments, transmissions, and initiations — happens in one place first. Practitioners who complete three-, six-, or nine-year retreats also return here afterward, before advancing further or being assigned to a monastery or nunnery.",
       image: { src: "/media/community/assembly-hall-gathering.jpg", alt: "Monks and practitioners seated in rows in the assembly hall at Ngagdra, receiving teachings", objectPosition: "50% 48%" },
     },
     {
       slug: "preserving-living-traditions",
-      title: "Preserving Living Traditions",
+      title: "Preserving living traditions",
       body: "Some teachings nearly disappeared. Cycles like the Gayjor Duenpa and the Guru Dewa practices survived by word of mouth for generations, carried by fewer and fewer people who still knew them. Rinpoche has spent decades tracking these teachings down, receiving them properly, and writing commentaries — including a full practice manual for Guru Dewa — so they can be taught again with confidence. A few senior monks and nuns have already completed these practices during dedicated retreat.",
       image: { src: "/media/heritage/ceremonial-proceedings.jpg", alt: "Monks in ceremonial dress playing ritual instruments during a procession", objectPosition: "60% 45%" },
     },
     {
       slug: "sacred-arts-knowledge",
-      title: "Sacred Arts & Knowledge",
-      body: "Alongside scripture, students learn the visual language of the tradition itself — mandala drawing, astrology, and the iconography behind the institute's own sacred art, including its 21-foot Hey Vajra statue, the largest of its kind in Bhutan. None of this is taught as decoration. Every mandala and every deity a monk learns to draw or visualize becomes a tool he'll rely on later, alone, during years of retreat.",
+      title: "Sacred arts & knowledge",
+      body: "Alongside scripture, students learn the visual language of the tradition itself — mandala drawing, astrology, and the iconography behind the institute's own sacred art, including its 21-foot Hevajra statue, the largest of its kind in Bhutan. None of this is taught as decoration. Every mandala and every deity a monk learns to draw or visualize becomes a tool he'll rely on later, alone, during years of retreat.",
       image: { src: "/media/heritage/ritual-assembly.jpg", alt: "A ritual assembly inside a richly painted temple hall", objectPosition: "56% 50%" },
     },
     {
       slug: "community-public-practice",
-      title: "Community & Public Practice",
+      title: "Community & public practice",
       body: "The institute's work doesn't stop at its own walls. At the special command of His Majesty the King, Rinpoche reintroduced the Soenjang — a life-purification ritual believed to lighten karma and prepare the mind for a peaceful death — now held annually at Ngagdra Dorji Choegar and open to the public. It's a reminder that everything studied and practiced here eventually flows back outward, to the communities the institute exists to serve.",
       image: { src: "/media/community/public-blessing.jpg", alt: "H.E. Gyeltshen Trulku Rinpoche moving through a seated crowd during a public blessing", objectPosition: "43% 45%" },
     },
   ] satisfies WorkArea[],
   journey: {
-    title: "The Practitioner Journey",
+    title: "The practitioner journey",
     steps: [
       { title: "Study", body: "Years spent mastering Vajrayana philosophy, mandala drawing, astrology, and the foundations of practice at the institute." },
       { title: "Training", body: "Empowerments, oral transmissions, and initiations received directly from Rinpoche, completing what's needed before retreat." },
       { title: "Retreat", body: "Three, six, or nine years of solitary meditation at one of the network's retreat centres." },
-      { title: "Advanced Practice", body: "Senior practitioners including nuns who complete nine-year programs, return to the institute for further teachings before undertaking deeper retreat." },
+      { title: "Advanced practice", body: "Senior practitioners including nuns who complete nine-year programs, return to the institute for further teachings before undertaking deeper retreat." },
       { title: "Continuation", body: "Some go on to serve as teachers, meditation masters, or assistants at the very centres that trained them, or take up solitary practice in the mountains, keeping the tradition alive for the next student who begins to study." },
     ],
   },
@@ -267,7 +267,7 @@ export const ourWork = {
 
 export const support = {
   eyebrow: "Support",
-  title: "Support the Practice, Not Just the Place",
+  title: "Support the practice, not just the place",
   lead: "Practice does not end with retreat. It becomes a service.",
   requires: {
     eyebrow: "What a retreat requires",

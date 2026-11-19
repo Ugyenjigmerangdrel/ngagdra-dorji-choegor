@@ -84,7 +84,7 @@ export default function HomePage() {
             className="feature__media feature__media--portrait"
           />
           <div className="feature__copy">
-            <SectionHead eyebrow="Our founder / spiritual head" title={rinpoche.name} intro={rinpoche.intro} action={{ label: "Read the biography", href: "/about/rinpoche" }} />
+            <SectionHead eyebrow="Founder and Spiritual Head" title={rinpoche.name} intro={rinpoche.intro} action={{ label: "Read the biography", href: "/about/rinpoche" }} />
           </div>
         </div>
       </section>
@@ -92,7 +92,7 @@ export default function HomePage() {
       <section className="section section--rule">
         <div className="container rail">
           <div className="rail__head">
-            <SectionHead eyebrow="The Living Chronicle" title="Teachings, ceremonies and gatherings." action={{ label: "Explore the chronicle", href: "/events" }} />
+            <SectionHead eyebrow="The living chronicle" title="Teachings, ceremonies and gatherings." action={{ label: "Explore the chronicle", href: "/events" }} />
           </div>
           <ol className="rail__body event-list">
             {latest.map((event) => (

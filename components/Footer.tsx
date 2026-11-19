@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Mark } from "@/components/Mark";
 
 const columns = [
-  { title: "Institute", links: [["Who we are", "/about"], ["Our founder", "/about/rinpoche"], ["Our lineage", "/about/history"], ["Our vision", "/about/heritage"], ["Our Work", "/our-work"]] },
-  { title: "Network & Chronicle", links: [["Centres", "/centres"], ["Events", "/events"], ["Stories", "/stories"], ["RSS", "/rss.xml"]] },
+  { title: "Institute", links: [["Who we are", "/about"], ["Our founder", "/about/rinpoche"], ["Our lineage", "/about/history"], ["Our vision", "/about/heritage"], ["Our work", "/our-work"]] },
+  { title: "Network & chronicle", links: [["Centres", "/centres"], ["Events", "/events"], ["Stories", "/stories"], ["RSS", "/rss.xml"]] },
   { title: "Participate", links: [["Visit", "/visit"], ["Support", "/support"]] },
 ];
 

@@ -12,7 +12,7 @@ const newsreader = Newsreader({ subsets: ["latin"], variable: "--font-serif", di
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: `${site.name} | Institute for Vajrayana Studies`, template: `%s | ${site.name}` },
+  title: { default: `${site.name} | Institute for Vajrayana Studies, Bhutan`, template: `%s | ${site.name}` },
   description: site.description,
   applicationName: site.name,
   icons: {

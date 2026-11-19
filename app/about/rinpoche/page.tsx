@@ -21,7 +21,7 @@ export default function RinpochePage() {
     <>
       <AboutNav current="/about/rinpoche" />
       <PageHeader
-        eyebrow="Our founder / spiritual head"
+        eyebrow="Founder and Spiritual Head"
         title={rinpoche.name}
         lead={rinpoche.intro}
         crumbs={[{ name: "About", path: "/about" }, { name: "H.E. Gyeltshen Trulku Rinpoche", path: "/about/rinpoche" }]}

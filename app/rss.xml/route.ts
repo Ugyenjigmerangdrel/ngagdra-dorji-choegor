@@ -13,6 +13,6 @@ export async function GET() {
     .sort((a, b) => b.date.localeCompare(a.date))
     .map((entry) => item(entry.title, entry.path, entry.description, entry.date))
     .join("");
-  const xml = `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${site.name}: Stories and Events</title><link>${site.url}/stories</link><description>${site.description}</description>${items}</channel></rss>`;
+  const xml = `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>${site.name}: Stories and events</title><link>${site.url}/stories</link><description>${site.description}</description>${items}</channel></rss>`;
   return new Response(xml, { headers: { "Content-Type": "application/rss+xml; charset=utf-8", "Cache-Control": "public, max-age=3600" } });
 }

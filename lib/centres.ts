@@ -27,7 +27,7 @@ export const centres: Centre[] = [
     name: "Lamai Goenpa & Zungju Yoesel Ling Drubdey",
     place: "Kangpar, Trashigang",
     district: "Trashigang",
-    type: "Monastery & Retreat Centre",
+    type: "Monastery & retreat centre",
     summary: ["Established at a site regarded as auspicious by Lopen Moenlam Rabzang, a close disciple of Togden Shakya Shri, Lamai Goenpa carries a history of lineage, devotion and retreat practice.", "The monastery was established in 1928 and later revived and developed under the guidance of H.E. Gyeltshen Trulku Rinpoche. In 1986, Rinpoche established his first retreat centre here, fulfilling the aspirations of his root guru, Drubwang Lama Sonam Zangpo, and Lopen Moenlam Rabzang.", "Today, the centre continues as a place of long-term meditation, with monks undertaking six-year retreat."],
     story: {
       title: "Lamai Goenpa",
@@ -69,7 +69,7 @@ export const centres: Centre[] = [
     name: "Chi-Phu Goenpa & Tashi Yoesel Phu Drubdey",
     place: "Khabti, Trashigang",
     district: "Trashigang",
-    type: "Monastery & Retreat Centre",
+    type: "Monastery & retreat centre",
     summary: ["Established as a seat of practice by Drubthob Thogmay Dorji in the nineteenth century, Chi-Phu Goenpa flourished as a centre of meditation before gradually declining.", "In 1987, H.E. Gyeltshen Trulku Rinpoche revived the retreat centre at the request of the local community and renamed it Tashi Yoesel Phu. Originally intended for lay practitioners, the centre was later dedicated to nuns undertaking long-term meditation retreats.", "Today, the centre continues as a place of intensive practice and Buddhist education, with nuns undertaking retreat and young monks studying before continuing their higher studies at Ngagdra Dorji Choegar."],
     story: {
       title: "Chi-Phu Goenpa",
@@ -110,7 +110,7 @@ export const centres: Centre[] = [
     name: "Morphu Drubdey",
     place: "Bikhar, Tashigang",
     district: "Trashigang",
-    type: "Retreat Centre",
+    type: "Retreat centre",
     summary: ["Morphu Drubdey grew from the individual retreat houses established by disciples of Drubthob Thogmay Dorji in Bikhar, who came to the area to practise and meditate on their guru's teachings. After years of decline, the retreat centre was revived in 1990 at the request of the Bikhar community and lay monks. Named after the surrounding mountains and local protector deity, Morphu Drubdey continues to host monks undertaking three- to six-year meditation retreats."],
     story: {
       title: "Morphu Drubdey",
@@ -142,7 +142,7 @@ export const centres: Centre[] = [
     name: "Dhendup Choeding Drubdey",
     place: "Tsanphu, Mongar",
     district: "Mongar",
-    type: "Retreat Centre",
+    type: "Retreat centre",
     summary: ["Dhendup Choeding Drubdey traces its origins to Lama Sangay Zangpo, who established a monastery at Kuenzang Nagthroe, present-day Tsanphu, in 1790. Although the monastery eventually fell into ruin, its sacred texts, important religious artefacts and the lama's bedroom were said to have remained intact. Centuries later, H.E. Gyeltshen Trulku Rinpoche found the site covered in vegetation and undertook its restoration.", "Renovated in 1992 and formally opened as a retreat centre in 1993, Dhendup Choeding Drubdey now provides a place for practitioners undertaking long-term meditation, with many spending six years or more in retreat."],
     story: {
       title: "Dhendup Choeding Drubdey",
@@ -178,7 +178,7 @@ export const centres: Centre[] = [
     name: "Larjab Drakar Choeling & Drubdey",
     place: "Mongar",
     district: "Mongar",
-    type: "Monastery & Retreat Centre",
+    type: "Monastery & retreat centre",
     summary: ["Perched behind Yakpogang Ridge, Larjab Drakar Choeling is one of eastern Bhutan’s important sacred sites, closely associated with the lineage of Drubchen Kuenzang Chophel. According to traditional accounts, the site was established in the early 18th century after Drubchen fulfilled the vision of his root guru. Renovated in 1995 and later developed as a retreat centre by H.E. Gyeltshen Trulku Rinpoche, it continues the region’s long tradition of yogic practice. Today, practitioners undertake three- to six-year meditation retreats in this remote mountain setting."],
     story: {
       title: "Larjab Drakar Choeling",
@@ -225,7 +225,7 @@ export const centres: Centre[] = [
     name: "Ba-Ney Tshering Jong Drubdey",
     place: "Trashiyangtse",
     district: "Trashiyangtse",
-    type: "Retreat Centre",
+    type: "Retreat centre",
     summary: ["Known locally as Baney, this sacred site is traditionally believed to have been blessed by Guru Rinpoche and Tshepamey. Its story begins with Lopen Damchen Rinchen, a practitioner from Kheng who settled here after discovering the peaceful ruins of an old house and established a small community of practitioners.", "The site was later revived by H.E. Gyeltshen Trulku Rinpoche, who renamed it Tshering Jong and established a community of twelve monks and one teacher in 1999. Today, the Goenpa is maintained by the local village community."],
     story: {
       title: "Ba-Ney Tshering Jong Drubdey",
@@ -266,7 +266,7 @@ export const centres: Centre[] = [
     name: "Jashar Woong Drubdey & Ani Dratshang",
     place: "Pemagatshel",
     district: "Pemagatshel",
-    type: "Retreat Centre & Nunnery",
+    type: "Retreat centre & nunnery",
     summary: ["Born from the devotion and vision of Ani Yoesel Choden, Jashar Woong has been a place of retreat and practice for more than nine decades. After receiving the Longchen Nyinthig and Togden Shakya Shri teachings from Thruelzhig Lama Gyeltshen Marpo, she established the retreat centre in 1933 to preserve his teachings.", "Revived by H.E. Gyeltshen Trulku Rinpoche in 1992, the centre has grown into a major nunnery and retreat community. Today, more than forty-five nuns live and practice here, with twenty-two undertaking intensive retreats ranging from three to twelve years.", "The centre is envisioned as a future teaching and training centre for the Togden Shakya Shri lineage in Bhutan."],
     story: {
       title: "Jashar Woong Drubdey",
@@ -322,7 +322,7 @@ export const centres: Centre[] = [
     name: "Togden Choeling Drubdey",
     place: "Gongthung, Tashigang",
     district: "Trashigang",
-    type: "Retreat Centre",
+    type: "Retreat centre",
     summary: ["Established in 2003 in Yangnyer village, Togden Choeling Drubdey transformed a once-abandoned and feared site into one of the region’s major retreat centres.", "The centre includes a temple, Mahakala temple and retreat houses for sixteen practitioners. At its heart is a remarkable three-dimensional Chakrasamvara mandala, described as the largest of its kind in Bhutan, standing approximately twenty-two feet high and thirteen feet long.", "Today, the centre is under the full management of Tashigang Rabdey."],
     story: {
       title: "Togden Choeling Drubdey",
@@ -444,7 +444,7 @@ export const centres: Centre[] = [
     name: "Darchen Goenpa & Tag-dong Drubdey",
     place: "Minjey, Lhuentse",
     district: "Lhuentse",
-    type: "Monastery & Retreat Centre",
+    type: "Monastery & retreat centre",
     summary: ["A place where the lineage is remembered through practice. Thruelzhig Gyeltshen Marpo established a retreat house here in 1918, and decades later H.E. Gyeltshen Trulku Rinpoche built a temple and retreat house on the same sacred site. Expanded in 2019, Tag-dong Drubdey now provides individual retreat houses for long-term meditation."],
     story: {
       title: "Darchen Goenpa & Tag-dong Drubdey",
@@ -474,7 +474,7 @@ export const centres: Centre[] = [
     name: "Mani Dundrup Ling",
     place: "Khaling, Tashigang",
     district: "Trashigang",
-    type: "Retreat Centre",
+    type: "Retreat centre",
     summary: ["On a ridge overlooking Droel Woong, a traditional account tells of a young girl who encountered twenty-one Taras and brought one sacred statue home. Recognizing the site as auspicious, H.E. Gyeltshen Trulku Rinpoche established Mani Dundrup Ling in 2012 as a place especially for elderly lay practitioners devoted to intensive mantra recitation."],
     story: {
       title: "Mani Dundrup Ling",
@@ -501,7 +501,7 @@ export const centres: Centre[] = [
     name: "Gyal-phu Drubdey",
     place: "Mongar",
     district: "Mongar",
-    type: "Retreat Centre",
+    type: "Retreat centre",
     summary: ["A place with an older connection to the lineage, Gyal-phu was associated with Thruelzhig Gyeltshen Marpo and his Dzogchen Longchen Nyingthik teachings. After an earlier retreat community struggled to continue, the centre reopened in 2018 with royal patronage. Today, practitioners undertake three- to six-year retreats under the spiritual guidance of H.E. Gyeltshen Trulku Rinpoche."],
     story: {
       title: "Gyal-phu Drubdey",
@@ -530,7 +530,7 @@ export const centres: Centre[] = [
     name: "Pongchola Drubdey",
     place: "Mongar",
     district: "Mongar",
-    type: "Retreat Centre",
+    type: "Retreat centre",
     summary: ["Once known as Potala, the pure land of Avalokiteshvara, Pongchola carries a long history of sacred objects, temples and practice. A self-enunciating stupa associated with the mani mantra remains at the site. After an earlier monastic school was discontinued, the place was re-established as a retreat centre in 2018, where self-funded practitioners continue their practice."],
     story: {
       title: "Pongchola Drubdey",
@@ -588,7 +588,7 @@ export const centres: Centre[] = [
     name: "Shamey Drubdey",
     place: "Mongar",
     district: "Mongar",
-    type: "Retreat Centre",
+    type: "Retreat centre",
     summary: ["Traditionally regarded as an ancient seat of the lineage holders of Pema Lingpa, Shamey Monastery stood abandoned for years without basic facilities or a resident caretaker. At the end of 2023, seven senior retreat practitioners who had completed six-year retreats at Larjab began a nine-year retreat here. The site remains under private management."],
     story: {
       title: "Shamey Drubdey",
@@ -616,7 +616,7 @@ export const centres: Centre[] = [
     name: "Tsholing Gongma Drubdey",
     place: "Tsho Ling, Saling Gewog, Mongar",
     district: "Mongar",
-    type: "Retreat Centre",
+    type: "Retreat centre",
     summary: ["Built in response to the growing need for retreat space, Tsholing Gongma Drubdey emerged rapidly from a forested mountain site in 2022. Around fifteen retreat houses were constructed, followed by a large temple completed in 2025. With Kalachakra as its principal statue and essential infrastructure now in place, it represents a newer generation of retreat centres within the network."],
     story: {
       title: "Tsholing Gongma Drubdey",

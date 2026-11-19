@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { ourWork } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
-export const metadata = pageMetadata("Our Work", ourWork.intro, "/our-work");
+export const metadata = pageMetadata("Our work", ourWork.intro, "/our-work");
 
 export default function OurWorkPage() {
   return (
@@ -15,7 +15,7 @@ export default function OurWorkPage() {
       <PageHeader
         title={ourWork.title}
         lead={ourWork.intro}
-        crumbs={[{ name: "Our Work", path: "/our-work" }]}
+        crumbs={[{ name: "Our work", path: "/our-work" }]}
         aside={
           <nav aria-label="Areas of work">
             <ul className="page-index">

@@ -41,7 +41,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Bleed images={[{ src: "/media/education/ngagdra-monks.jpg", alt: "Young monks of Ngagdra Dorji Choegar standing together in ceremonial scarves", objectPosition: "50% 38%" }]} caption="Young monks of Ngagdra Dorji Choegar." />
+      <Bleed images={[{ src: "/media/education/ngagdra-monks.jpg", alt: "Young monks of Ngagdra Dorji Choegar standing together in ceremonial scarves", objectPosition: "50% 6%" }]} caption="Young monks of Ngagdra Dorji Choegar." />
 
       <section className="section section--band">
         <div className="container grid feature">
@@ -54,7 +54,7 @@ export default function AboutPage() {
             className="feature__media feature__media--portrait"
           />
           <div className="feature__copy">
-            <SectionHead eyebrow="Our founder / spiritual head" title={rinpoche.name} intro={rinpoche.intro} action={{ label: "Read the biography", href: "/about/rinpoche" }} />
+            <SectionHead eyebrow="Founder and Spiritual Head" title={rinpoche.name} intro={rinpoche.intro} action={{ label: "Read the biography", href: "/about/rinpoche" }} />
           </div>
         </div>
       </section>

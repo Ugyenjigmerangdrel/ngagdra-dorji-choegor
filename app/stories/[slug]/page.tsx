@@ -77,7 +77,7 @@ export default async function StoryPage({ params }: { params: Promise<{ slug: st
       <nav className="container pager-wrap story-end" aria-label="Stories">
         <p className="story-end__title">{storiesIntro.title}</p>
         <p className="eyebrow">{storiesIntro.kicker}</p>
-        <TextLink href="/stories">Back to Stories</TextLink>
+        <TextLink href="/stories">Back to stories</TextLink>
       </nav>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(articleLd) }} />
     </>
