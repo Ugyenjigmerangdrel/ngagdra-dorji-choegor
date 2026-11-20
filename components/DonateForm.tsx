@@ -8,7 +8,8 @@ import { idle } from "@/lib/forms";
 
 const longDate = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Thimphu" });
 
-export function DonateForm({ online }: { online: boolean }) {
+/** `initial` fills the form for a signed-in member paying their monthly contribution. */
+export function DonateForm({ online, initial = {} }: { online: boolean; initial?: Record<string, string> }) {
   const [state, action] = useActionState(submitDonation, idle);
 
   if (state.status === "done") {
@@ -41,7 +42,7 @@ export function DonateForm({ online }: { online: boolean }) {
         <input type="hidden" name="method" value="bank" />
       )}
       <Field name="donor_name" label="Name" required state={state}>
-        {(props) => <input {...props} type="text" autoComplete="name" maxLength={120} />}
+        {(props) => <input {...props} defaultValue={props.defaultValue || initial.donor_name} type="text" autoComplete="name" maxLength={120} />}
       </Field>
       <Field name="mobile" label="Mobile number" state={state}>
         {(props) => <input {...props} type="tel" inputMode="tel" autoComplete="tel" maxLength={20} />}
@@ -50,17 +51,17 @@ export function DonateForm({ online }: { online: boolean }) {
         {(props) => <input {...props} type="email" inputMode="email" autoComplete="email" maxLength={200} />}
       </Field>
       <Field name="amount" label="Amount (Nu.)" required state={state}>
-        {(props) => <input {...props} type="text" inputMode="numeric" autoComplete="off" maxLength={12} />}
+        {(props) => <input {...props} defaultValue={props.defaultValue || initial.amount} type="text" inputMode="numeric" autoComplete="off" maxLength={12} />}
       </Field>
       <Field name="purpose" label="Purpose" state={state}>
         {({ defaultValue, ...props }) => (
-          <select {...props} defaultValue={defaultValue || "general"}>
+          <select {...props} defaultValue={defaultValue || initial.purpose || "general"}>
             {donationPurposes.map((purpose) => <option key={purpose.value} value={purpose.value}>{purpose.label}</option>)}
           </select>
         )}
       </Field>
       <Field name="member_ref" label="Member ID or mobile number" state={state} className="field--member" hint="For a monthly membership contribution, so the payment can be matched to the member.">
-        {(props) => <input {...props} type="text" autoComplete="off" maxLength={40} />}
+        {(props) => <input {...props} defaultValue={props.defaultValue || initial.member_ref} type="text" autoComplete="off" maxLength={40} />}
       </Field>
       <Field name="reference" label="Journal or transaction number" state={state} className="field--bank">
         {(props) => <input {...props} type="text" autoComplete="off" maxLength={120} />}

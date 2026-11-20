@@ -23,6 +23,7 @@ export function MembershipForm() {
           <div><dt>Status</dt><dd>Pending verification</dd></div>
         </dl>
         <p className="note">Please keep your Member ID. The committee will verify your registration.</p>
+        <p><a className="text-link text-link--small" href="/membership/account">View my membership</a></p>
       </div>
     );
   }

@@ -1107,3 +1107,27 @@ h1, .closer__title, .home-intro__head h2, .home-network__head h2, .home-pillars 
 .cms-body .carousel-label { display: block; margin-top: 8px; font-size: var(--fs-meta); color: var(--ink-2); }
 .cms-body .carousel-prev, .cms-body .carousel-next, .cms-body .carousel-dots { display: none; }
 .chronicle__body .cms-body p { font-size: inherit; }
+
+/* My membership: this month's contribution, then the last twelve months at a glance. */
+.member-now { margin: 0; font-family: var(--serif); font-size: var(--t-title-lg); line-height: 1.25; letter-spacing: -.01em; color: var(--ink); max-width: 30ch; }
+.member-now--paid { color: var(--brand); }
+.member-now + .note { margin: 10px 0 0; }
+.member-actions { margin-top: 24px; }
+.member-hint { margin-top: 14px; max-width: 34rem; }
+.months { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); max-width: 34rem; border-top: 1px solid var(--ink); }
+.months li { display: grid; justify-items: center; align-content: start; gap: 6px; padding: 14px 0 10px; border-bottom: 1px solid var(--rule); font-size: 12px; line-height: 1.2; color: var(--ink-2); }
+.months__mark { display: grid; place-items: center; width: 22px; height: 22px; border: 1.5px solid var(--rule-strong); border-radius: 50%; color: #fff; }
+.months li[data-state="paid"] .months__mark { background: var(--brand); border-color: var(--brand); }
+.months li[data-state="paid"] .months__name { color: var(--ink); font-weight: 650; }
+.months li[data-state="none"] .months__mark { border-style: dotted; }
+.months__year { min-height: 1.2em; font-size: 11px; font-variant-numeric: tabular-nums; }
+.months__state { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.months__key { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 12px 0 0; font-size: var(--fs-meta); color: var(--ink-2); }
+.months__key span { display: inline-flex; align-items: center; gap: 8px; }
+.months__key span::before { content: ""; width: 10px; height: 10px; border: 1.5px solid var(--rule-strong); border-radius: 50%; }
+.months__key span[data-state="paid"]::before { background: var(--brand); border-color: var(--brand); }
+.member-last { max-width: 34rem; margin-bottom: 0; }
+.link-button { border: 0; background: none; cursor: pointer; color: inherit; font-family: inherit; }
+@media (max-width: 520px) {
+  .months { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}

@@ -4,7 +4,7 @@ import { Mark } from "@/components/Mark";
 const columns = [
   { title: "Institute", links: [["Who we are", "/about"], ["Our founder", "/about/rinpoche"], ["Our lineage", "/about/history"], ["Our vision", "/about/heritage"], ["Our work", "/our-work"]] },
   { title: "Network & chronicle", links: [["Centres", "/centres"], ["Events", "/events"], ["Stories", "/stories"], ["Announcements", "/announcements"], ["RSS", "/rss.xml"]] },
-  { title: "Participate", links: [["Visit", "/visit"], ["Support", "/support"], ["Donate", "/donate"], ["Membership", "/membership"]] },
+  { title: "Participate", links: [["Visit", "/visit"], ["Support", "/support"], ["Donate", "/donate"], ["Membership", "/membership"], ["My membership", "/membership/account"]] },
 ];
 
 export function Footer() {

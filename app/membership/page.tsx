@@ -1,5 +1,5 @@
 import { Arrow } from "@/components/Arrow";
-import { SectionHead } from "@/components/Editorial";
+import { SectionHead, TextLink } from "@/components/Editorial";
 import { MembershipForm } from "@/components/MembershipForm";
 import { PageHeader } from "@/components/PageHeader";
 import { dokram } from "@/lib/dokram";
@@ -20,7 +20,7 @@ export default function MembershipPage() {
         lead={dokram.lead}
         crumbs={[{ name: "Membership", path: "/membership" }]}
         cover={{ src: "/media/community/assembly-hall-gathering.jpg", objectPosition: "50% 48%" }}
-        actions={<a className="button" href="#register">Register<Arrow direction="down" /></a>}
+        actions={<><a className="button" href="#register">Register<Arrow direction="down" /></a><TextLink href="/membership/account" className="text-link--light">Already a member? View my membership</TextLink></>}
         aside={
           <nav aria-label="On this page">
             <ul className="page-index">

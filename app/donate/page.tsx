@@ -5,14 +5,26 @@ import { PageHeader } from "@/components/PageHeader";
 import { getSiteSettings } from "@/lib/cms";
 import { support } from "@/lib/content";
 import { dokram } from "@/lib/dokram";
+import { currentMember } from "@/lib/member";
 import { pageMetadata } from "@/lib/seo";
 import { wonsEnabled } from "@/lib/wons";
 
 export const metadata = pageMetadata("Donate", `${support.lead} ${support.requires.closing}`, "/donate");
 
-export default async function DonatePage({ searchParams }: { searchParams: Promise<{ cancelled?: string }> }) {
+export default async function DonatePage({ searchParams }: { searchParams: Promise<{ cancelled?: string; purpose?: string }> }) {
   const [settings, query] = await Promise.all([getSiteSettings(), searchParams]);
   const online = wonsEnabled();
+  // Arriving from "My membership": the form opens ready for this member's monthly contribution.
+  const initial: Record<string, string> = {};
+  if (query.purpose === "membership") {
+    initial.purpose = "membership";
+    const remembered = await currentMember();
+    if (remembered.state === "found") {
+      initial.donor_name = remembered.member.name;
+      initial.member_ref = remembered.member.code;
+      initial.amount = String(remembered.member.monthlyAmount);
+    }
+  }
   const bank = settings && settings.accountNumber ? settings : null;
   const phone = settings?.contactPhone || dokram.contacts.phones.join(" / ");
   const email = settings?.contactEmail || dokram.contacts.email;
@@ -62,7 +74,7 @@ export default async function DonatePage({ searchParams }: { searchParams: Promi
           </div>
           <div className="rail__body">
             {query.cancelled ? <p className="form-notice" role="status">The online payment was cancelled. Nothing has been charged.</p> : null}
-            <DonateForm online={online} />
+            <DonateForm online={online} initial={initial} />
           </div>
         </div>
       </section>
