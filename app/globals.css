@@ -1126,8 +1126,48 @@ h1, .closer__title, .home-intro__head h2, .home-network__head h2, .home-pillars 
 .months__key span { display: inline-flex; align-items: center; gap: 8px; }
 .months__key span::before { content: ""; width: 10px; height: 10px; border: 1.5px solid var(--rule-strong); border-radius: 50%; }
 .months__key span[data-state="paid"]::before { background: var(--brand); border-color: var(--brand); }
-.member-last { max-width: 34rem; margin-bottom: 0; }
 .link-button { border: 0; background: none; cursor: pointer; color: inherit; font-family: inherit; }
+.section--tight { padding-block: clamp(40px, 6vw, 80px); }
+.member-now + .actions, .member-now + .note + .actions { margin-top: 24px; }
+
+/* Payments sent and receipts: one row each, the figure on the right. */
+.ledger { list-style: none; margin: 0; padding: 0; max-width: 34rem; border-top: 1px solid var(--ink); }
+.ledger li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.ledger__main { display: grid; gap: 3px; min-width: 0; font-size: var(--fs-meta); color: var(--ink-2); }
+.ledger__main strong { font-size: var(--fs-body); font-weight: 650; color: var(--ink); font-variant-numeric: tabular-nums; }
+.ledger__amount { flex: none; font-size: var(--fs-body); font-weight: 650; font-variant-numeric: tabular-nums; }
+.ledger__status { flex: none; padding: 4px 10px; border: 1px solid var(--rule-strong); border-radius: 999px; font-size: 12px; font-weight: 650; line-height: 1.3; }
+.ledger li[data-status="verified"] .ledger__status { border-color: var(--brand); color: var(--brand); }
+.ledger li[data-status="rejected"] .ledger__status { border-color: var(--accent); color: var(--accent); }
+.ledger__note { color: var(--text); }
+.ledger--sent { margin-top: 32px; }
+
+/* Sending a payment: controls sized for a thumb. */
+.field__label { font-size: var(--t-small); font-weight: 650; color: var(--ink); }
+.stepper { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; align-items: center; border: 1px solid var(--rule-strong); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+.stepper button { height: 56px; border: 0; background: none; font-size: 24px; line-height: 1; color: var(--brand); cursor: pointer; }
+.stepper button:disabled { color: var(--rule-strong); cursor: default; }
+.stepper button:first-child { border-right: 1px solid var(--rule); }
+.stepper button:last-child { border-left: 1px solid var(--rule); }
+.stepper output { text-align: center; font-size: var(--fs-body); font-weight: 650; font-variant-numeric: tabular-nums; }
+.pay input[name="amount"] { min-height: 56px; font-size: 20px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.field .picker { position: relative; display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 12px 14px; border: 1.5px dashed var(--rule-strong); border-radius: var(--radius); background: var(--surface); cursor: pointer; font-weight: 400; transition: border-color 160ms ease; }
+.field .picker:hover { border-color: var(--ink-3); }
+.field .picker--chosen { border-style: solid; border-color: var(--brand); }
+.field--error .picker { border-color: var(--accent); }
+.picker input { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; padding: 0; border: 0; opacity: 0; cursor: pointer; }
+.picker:has(input:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
+.picker img { flex: none; width: 52px; height: 52px; object-fit: cover; border-radius: 6px; border: 1px solid var(--rule); }
+.picker__text { display: grid; gap: 2px; min-width: 0; font-size: var(--fs-meta); color: var(--ink-2); }
+.picker__text strong { font-size: var(--fs-body); font-weight: 650; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pay__actions .button { min-height: 56px; padding-inline: 28px; font-size: var(--fs-body); }
+.facts__copy { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.copy { min-height: 40px; padding: 8px 16px; border: 1px solid var(--rule-strong); border-radius: var(--radius); background: var(--surface); font-size: var(--t-small); font-weight: 650; color: var(--brand); cursor: pointer; }
+.copy:hover { border-color: var(--brand); }
+
+@media (max-width: 700px) {
+  .pay__actions .button { width: 100%; }
+}
 @media (max-width: 520px) {
   .months { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 }

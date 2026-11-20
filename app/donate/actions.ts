@@ -4,25 +4,14 @@ import { randomUUID } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { donationPurposes } from "@/lib/dokram";
-import { emailLooksValid, mobileLooksValid, textValues, type FormState } from "@/lib/forms";
+import { emailLooksValid, imageType, MAX_PROOF_BYTES, mobileLooksValid, textValues, type FormState } from "@/lib/forms";
 import { site } from "@/lib/site";
 import { getSupabase } from "@/lib/supabase";
 import { CHECKOUT_COOKIE, CHECKOUT_COOKIE_SECONDS, createCheckoutSession, sealCheckout, wonsConfig } from "@/lib/wons";
 
 const FIELDS = ["donor_name", "mobile", "email", "amount", "purpose", "member_ref", "reference", "message", "anonymous", "method"] as const;
 
-const MAX_PROOF_BYTES = 6 * 1024 * 1024;
 const UNAVAILABLE = "Your donation could not be submitted just now. Please try again in a little while.";
-
-/** The image type, read from the file's first bytes rather than from its name or declared type. */
-function imageType(bytes: Uint8Array): { ext: "jpg" | "png" | "webp"; mime: string } | null {
-  const at = (index: number) => bytes[index];
-  if (at(0) === 0xff && at(1) === 0xd8 && at(2) === 0xff) return { ext: "jpg", mime: "image/jpeg" };
-  if ([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a].every((byte, index) => at(index) === byte)) return { ext: "png", mime: "image/png" };
-  const ascii = (from: number) => String.fromCharCode(...bytes.slice(from, from + 4));
-  if (bytes.length > 12 && ascii(0) === "RIFF" && ascii(8) === "WEBP") return { ext: "webp", mime: "image/webp" };
-  return null;
-}
 
 export async function submitDonation(_previous: FormState, formData: FormData): Promise<FormState> {
   const values = textValues(formData, FIELDS);

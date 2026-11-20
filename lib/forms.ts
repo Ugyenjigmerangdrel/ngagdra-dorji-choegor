@@ -26,3 +26,16 @@ export function mobileLooksValid(value: string): boolean {
 }
 
 export const emailLooksValid = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= 200;
+
+/** The largest payment screenshot the forms accept. */
+export const MAX_PROOF_BYTES = 6 * 1024 * 1024;
+
+/** The image type, read from the file's first bytes rather than from its name or declared type. */
+export function imageType(bytes: Uint8Array): { ext: "jpg" | "png" | "webp"; mime: string } | null {
+  const at = (index: number) => bytes[index];
+  if (at(0) === 0xff && at(1) === 0xd8 && at(2) === 0xff) return { ext: "jpg", mime: "image/jpeg" };
+  if ([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a].every((byte, index) => at(index) === byte)) return { ext: "png", mime: "image/png" };
+  const ascii = (from: number) => String.fromCharCode(...bytes.slice(from, from + 4));
+  if (bytes.length > 12 && ascii(0) === "RIFF" && ascii(8) === "WEBP") return { ext: "webp", mime: "image/webp" };
+  return null;
+}
